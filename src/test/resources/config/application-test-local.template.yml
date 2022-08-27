@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    username: root
+    password:
+    url: jdbc:mysql://localhost:3307
+
+security:
+  allowed:
+    domains: "*"
+  signing-key: "test-local-key"

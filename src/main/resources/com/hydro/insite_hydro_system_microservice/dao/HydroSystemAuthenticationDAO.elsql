@@ -1,0 +1,7 @@
+@NAME(getSystemHashedPassword)
+  SELECT
+    sys.password
+  FROM
+    systems sys
+  WHERE
+    sys.uuid = :uuid
