@@ -1,6 +1,6 @@
 # Hydroponics API Microservice
 
-- @JosueVanDyke add description
+- @JosueVanDyke add description.
   - Explain what hydroponics are
   - The purpose of this repository
 
