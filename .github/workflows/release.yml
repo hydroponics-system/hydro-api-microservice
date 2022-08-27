@@ -3,7 +3,7 @@ on:
   workflow_run:
     workflows: ["Build Production"]
     types: [completed]
-    branches: [production]
+    branches: [master]
 
 jobs:
   on-success:
