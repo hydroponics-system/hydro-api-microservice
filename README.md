@@ -1,4 +1,4 @@
-# Hydroponics API
+# Hydroponics API Microservice
 
 - @JosueVanDyke add description
   - Explain what hydroponics are
