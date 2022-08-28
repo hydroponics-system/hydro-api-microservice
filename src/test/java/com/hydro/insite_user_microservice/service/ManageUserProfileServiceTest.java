@@ -15,10 +15,10 @@ import org.mockito.Mock;
 
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.dictionary.enums.WebRole;
+import com.hydro.common.exception.exceptions.InsufficientPermissionsException;
+import com.hydro.common.exception.exceptions.NotFoundException;
 import com.hydro.common.jwt.utility.JwtHolder;
-import com.hydro.insite_common_microservice.util.HydroLogger;
-import com.hydro.insite_exception_microservice.exceptions.InsufficientPermissionsException;
-import com.hydro.insite_exception_microservice.exceptions.NotFoundException;
+import com.hydro.common.logger.HydroLogger;
 import com.hydro.insite_user_microservice.client.UserCredentialsClient;
 import com.hydro.insite_user_microservice.dao.UserProfileDAO;
 import com.hydro.utility.factory.annotations.HydroServiceTest;

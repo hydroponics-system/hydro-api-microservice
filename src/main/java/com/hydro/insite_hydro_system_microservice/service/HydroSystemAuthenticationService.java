@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Sets;
 import com.hydro.common.dictionary.data.HydroSystem;
+import com.hydro.common.exception.exceptions.InvalidSystemCredentials;
 import com.hydro.common.jwt.utility.JwtTokenUtil;
 import com.hydro.insite_auth_microservice.client.domain.AuthToken;
-import com.hydro.insite_exception_microservice.exceptions.InvalidSystemCredentials;
 import com.hydro.insite_hydro_system_microservice.client.HydroSystemClient;
 import com.hydro.insite_hydro_system_microservice.client.domain.request.HydroSystemGetRequest;
 import com.hydro.insite_hydro_system_microservice.client.domain.request.SystemAuthenticationRequest;

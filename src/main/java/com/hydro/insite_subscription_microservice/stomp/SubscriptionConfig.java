@@ -11,7 +11,7 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
 import com.hydro.common.jwt.utility.JwtHolder;
-import com.hydro.insite_common_microservice.util.HydroLogger;
+import com.hydro.common.logger.HydroLogger;
 
 /**
  * Websocket config for setting ws endpoints and defining the handshake handler

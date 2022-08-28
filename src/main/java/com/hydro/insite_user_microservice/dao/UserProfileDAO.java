@@ -17,8 +17,8 @@ import org.springframework.stereotype.Repository;
 
 import com.google.common.collect.Sets;
 import com.hydro.common.dictionary.data.User;
+import com.hydro.common.exception.exceptions.NotFoundException;
 import com.hydro.insite_common_microservice.abstracts.BaseDao;
-import com.hydro.insite_exception_microservice.exceptions.NotFoundException;
 import com.hydro.insite_sql_microservice.builder.SqlParamBuilder;
 import com.hydro.insite_user_microservice.client.domain.request.UserGetRequest;
 

@@ -9,12 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Sets;
 import com.hydro.common.dictionary.data.User;
+import com.hydro.common.exception.exceptions.InvalidCredentialsException;
 import com.hydro.common.jwt.utility.JwtHolder;
 import com.hydro.common.jwt.utility.JwtTokenUtil;
 import com.hydro.insite_auth_microservice.client.domain.AuthToken;
 import com.hydro.insite_auth_microservice.client.domain.request.AuthenticationRequest;
 import com.hydro.insite_auth_microservice.dao.AuthenticationDAO;
-import com.hydro.insite_exception_microservice.exceptions.InvalidCredentialsException;
 import com.hydro.insite_user_microservice.client.UserProfileClient;
 import com.hydro.insite_user_microservice.client.domain.request.UserGetRequest;
 

@@ -10,7 +10,8 @@ buildscript {
 		elsql_version = '1.2'
 		google_bugs_version = '3.0.2'
 		apache_http_version = '4.5.13'
-		hydro_common = '1.3.3'
+		hydro_common = '1.3.5'
+		hydro_api_gateway = '1.0.1'
     }
 }
 
@@ -52,6 +53,7 @@ dependencies {
 	implementation "org.springdoc:springdoc-openapi-ui:${spring_doc_openapi_version}"
 	implementation "org.apache.httpcomponents:httpclient:${apache_http_version}"
 	implementation "com.github.hydroponics-system:hydro-common-microservice:v${hydro_common}"
+	implementation "com.github.hydroponics-system:hydro-api-gateway-microservice:v${hydro_api_gateway}"
 
 	runtimeOnly "mysql:mysql-connector-java:${mysql_connector_version}"
 

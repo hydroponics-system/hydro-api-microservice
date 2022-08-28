@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
-import com.hydro.insite_common_microservice.util.HydroLogger;
+import com.hydro.common.logger.HydroLogger;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationBody;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationEnvelope;
 

@@ -24,7 +24,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.hydro.insite_common_microservice.util.HydroLogger;
+import com.hydro.common.logger.HydroLogger;
 import com.hydro.insite_sql_microservice.builder.DatabaseConnectionBuilder;
 import com.hydro.utility.factory.globals.GlobalsTest;
 

@@ -17,9 +17,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.hydro.common.dictionary.enums.WebRole;
+import com.hydro.common.exception.exceptions.InsufficientPermissionsException;
 import com.hydro.common.jwt.utility.JwtHolder;
 import com.hydro.insite_common_microservice.annotations.interfaces.HasAccess;
-import com.hydro.insite_exception_microservice.exceptions.InsufficientPermissionsException;
 import com.hydro.utility.factory.annotations.HydroTest;
 
 /**

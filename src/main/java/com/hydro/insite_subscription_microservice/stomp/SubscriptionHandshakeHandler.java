@@ -9,7 +9,7 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
 
 import com.hydro.common.jwt.utility.JwtHolder;
-import com.hydro.insite_common_microservice.util.HydroLogger;
+import com.hydro.common.logger.HydroLogger;
 import com.hydro.insite_subscription_microservice.client.domain.UserPrincipal;
 
 /**

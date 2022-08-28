@@ -6,9 +6,9 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.hydro.common.exception.exceptions.InsufficientPermissionsException;
 import com.hydro.common.jwt.utility.JwtHolder;
 import com.hydro.insite_common_microservice.annotations.interfaces.HasAccess;
-import com.hydro.insite_exception_microservice.exceptions.InsufficientPermissionsException;
 
 /**
  * Aspect to check if a user has access to the provided data.

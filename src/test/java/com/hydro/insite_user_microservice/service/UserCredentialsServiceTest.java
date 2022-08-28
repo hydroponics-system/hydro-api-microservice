@@ -21,10 +21,10 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.dictionary.enums.WebRole;
+import com.hydro.common.exception.exceptions.InsufficientPermissionsException;
+import com.hydro.common.exception.exceptions.InvalidCredentialsException;
 import com.hydro.common.jwt.utility.JwtHolder;
 import com.hydro.insite_auth_microservice.client.AuthenticationClient;
-import com.hydro.insite_exception_microservice.exceptions.InsufficientPermissionsException;
-import com.hydro.insite_exception_microservice.exceptions.InvalidCredentialsException;
 import com.hydro.insite_user_microservice.client.UserProfileClient;
 import com.hydro.insite_user_microservice.client.domain.PasswordUpdate;
 import com.hydro.insite_user_microservice.dao.UserCredentialsDAO;

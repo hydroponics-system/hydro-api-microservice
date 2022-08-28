@@ -14,11 +14,11 @@ import com.hydro.common.dictionary.data.HydroSystem;
 import com.hydro.common.dictionary.data.PartNumber;
 import com.hydro.common.dictionary.enums.WebRole;
 import com.hydro.common.environment.AppEnvironmentService;
+import com.hydro.common.exception.exceptions.InsufficientPermissionsException;
+import com.hydro.common.exception.exceptions.NotFoundException;
 import com.hydro.common.jwt.utility.JwtHolder;
+import com.hydro.common.logger.HydroLogger;
 import com.hydro.insite_common_microservice.util.CommonUtil;
-import com.hydro.insite_common_microservice.util.HydroLogger;
-import com.hydro.insite_exception_microservice.exceptions.InsufficientPermissionsException;
-import com.hydro.insite_exception_microservice.exceptions.NotFoundException;
 import com.hydro.insite_hydro_system_microservice.client.domain.request.HydroSystemGetRequest;
 import com.hydro.insite_hydro_system_microservice.dao.HydroSystemDAO;
 

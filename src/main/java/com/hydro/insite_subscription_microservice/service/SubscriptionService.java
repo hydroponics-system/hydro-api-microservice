@@ -10,7 +10,7 @@ import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.stereotype.Component;
 
 import com.hydro.common.dictionary.enums.WebRole;
-import com.hydro.insite_common_microservice.util.HydroLogger;
+import com.hydro.common.logger.HydroLogger;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationAction;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationBody;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationEnvelope;

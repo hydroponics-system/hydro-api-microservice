@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.test.context.jdbc.Sql;
 
-import com.hydro.insite_exception_microservice.exceptions.NotFoundException;
+import com.hydro.common.exception.exceptions.NotFoundException;
 import com.hydro.utility.factory.annotations.HydroDaoTest;
 
 /**
