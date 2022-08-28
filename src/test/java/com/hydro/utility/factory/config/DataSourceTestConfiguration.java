@@ -90,9 +90,11 @@ public class DataSourceTestConfiguration {
      */
     @PreDestroy
     public void destroy() {
-        NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(activeDataSource);
-        template.update(String.format("DROP SCHEMA IF EXISTS %s", activeDataSource.getSchema()), new HashMap<>());
-        LOGGER.info("Schema '{}' successfully dropped!", activeDataSource.getSchema());
+        if(activeDataSource != null) {
+            NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(activeDataSource);
+            template.update(String.format("DROP SCHEMA IF EXISTS %s", activeDataSource.getSchema()), new HashMap<>());
+            LOGGER.info("Schema '{}' successfully dropped!", activeDataSource.getSchema());
+        }
     }
 
     /**
