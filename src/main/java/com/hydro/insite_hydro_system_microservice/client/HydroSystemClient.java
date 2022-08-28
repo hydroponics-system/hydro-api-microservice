@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
+import com.hydro.common.annotations.interfaces.Client;
 import com.hydro.common.dictionary.data.HydroSystem;
-import com.hydro.insite_common_microservice.annotations.interfaces.Client;
 import com.hydro.insite_hydro_system_microservice.client.domain.request.HydroSystemGetRequest;
 import com.hydro.insite_hydro_system_microservice.service.HydroSystemService;
 

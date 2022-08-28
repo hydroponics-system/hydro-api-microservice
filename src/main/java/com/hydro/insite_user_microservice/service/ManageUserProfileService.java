@@ -1,14 +1,15 @@
 package com.hydro.insite_user_microservice.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.dictionary.enums.WebRole;
+import com.hydro.common.exception.InsufficientPermissionsException;
 import com.hydro.common.jwt.utility.JwtHolder;
-import com.hydro.insite_common_microservice.util.HydroLogger;
-import com.hydro.insite_exception_microservice.exceptions.InsufficientPermissionsException;
 import com.hydro.insite_user_microservice.client.UserCredentialsClient;
 import com.hydro.insite_user_microservice.dao.UserProfileDAO;
 
@@ -22,6 +23,8 @@ import com.hydro.insite_user_microservice.dao.UserProfileDAO;
 @Service
 public class ManageUserProfileService {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ManageUserProfileService.class);
+
 	@Autowired
 	private JwtHolder jwtHolder;
 
@@ -30,9 +33,6 @@ public class ManageUserProfileService {
 
 	@Autowired
 	private UserProfileDAO dao;
-
-	@Autowired
-	private HydroLogger LOGGER;
 
 	/**
 	 * Creates a new user for the given user object.

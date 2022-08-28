@@ -12,7 +12,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import com.hydro.insite_common_microservice.abstracts.BaseDao;
+import com.hydro.common.abstracts.BaseDao;
 import com.hydro.insite_grow_chamber_history_microservice.client.domain.GrowChamberLog;
 import com.hydro.insite_grow_chamber_history_microservice.client.domain.request.GrowChamberHistoryGetRequest;
 import com.hydro.insite_sql_microservice.builder.SqlParamBuilder;

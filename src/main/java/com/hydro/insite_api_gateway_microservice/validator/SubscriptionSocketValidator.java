@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Component;
 
+import com.hydro.common.exception.JwtTokenException;
 import com.hydro.insite_api_gateway_microservice.domain.abstracts.CommonTokenValidator;
-import com.hydro.insite_exception_microservice.exceptions.JwtTokenException;
 
 /**
  * Subscription token validator for confirming a token on a request header.

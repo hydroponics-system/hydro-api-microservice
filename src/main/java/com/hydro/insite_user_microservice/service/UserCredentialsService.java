@@ -9,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import com.hydro.common.dictionary.data.User;
+import com.hydro.common.exception.BaseException;
+import com.hydro.common.exception.InsufficientPermissionsException;
 import com.hydro.common.jwt.utility.JwtHolder;
 import com.hydro.insite_auth_microservice.client.AuthenticationClient;
-import com.hydro.insite_exception_microservice.exceptions.BaseException;
-import com.hydro.insite_exception_microservice.exceptions.InsufficientPermissionsException;
 import com.hydro.insite_user_microservice.client.UserProfileClient;
 import com.hydro.insite_user_microservice.client.domain.PasswordUpdate;
 import com.hydro.insite_user_microservice.dao.UserCredentialsDAO;

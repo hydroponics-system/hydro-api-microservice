@@ -1,4 +1,4 @@
-package com.hydro.insite_jwt_microservice.config;
+package com.hydro.insite_api_gateway_microservice.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

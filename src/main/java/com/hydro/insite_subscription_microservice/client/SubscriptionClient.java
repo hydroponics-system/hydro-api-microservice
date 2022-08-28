@@ -3,8 +3,8 @@ package com.hydro.insite_subscription_microservice.client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.reactive.socket.server.WebSocketService;
 
+import com.hydro.common.annotations.interfaces.Client;
 import com.hydro.common.dictionary.enums.WebRole;
-import com.hydro.insite_common_microservice.annotations.interfaces.Client;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationAction;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationBody;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationSocket;

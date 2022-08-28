@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 
+import com.hydro.common.annotations.interfaces.ControllerJwt;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.insite_auth_microservice.client.domain.AuthToken;
 import com.hydro.insite_auth_microservice.client.domain.request.AuthenticationRequest;
 import com.hydro.insite_auth_microservice.service.AuthenticationService;
-import com.hydro.insite_common_microservice.annotations.interfaces.ControllerJwt;
 import com.hydro.utility.factory.abstracts.BaseControllerTest;
 import com.hydro.utility.factory.annotations.HydroRestTest;
 

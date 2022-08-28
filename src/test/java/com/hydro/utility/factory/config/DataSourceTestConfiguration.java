@@ -1,6 +1,6 @@
 package com.hydro.utility.factory.config;
 
-import static com.hydro.insite_common_microservice.util.CommonUtil.generateRandomNumber;
+import static com.hydro.common.util.CommonUtil.generateRandomNumber;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -11,6 +11,8 @@ import java.util.List;
 import javax.annotation.PreDestroy;
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +26,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.hydro.insite_common_microservice.util.HydroLogger;
 import com.hydro.insite_sql_microservice.builder.DatabaseConnectionBuilder;
 import com.hydro.utility.factory.globals.GlobalsTest;
 
@@ -37,7 +38,7 @@ import com.hydro.utility.factory.globals.GlobalsTest;
 @Configuration
 @EnableTransactionManagement
 public class DataSourceTestConfiguration {
-    private static final HydroLogger LOGGER = new HydroLogger(DataSourceTestConfiguration.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataSourceTestConfiguration.class);
 
     @Autowired
     private Environment ENV;

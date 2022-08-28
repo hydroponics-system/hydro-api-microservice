@@ -22,11 +22,10 @@ import com.hydro.common.dictionary.data.HydroSystem;
 import com.hydro.common.dictionary.enums.Environment;
 import com.hydro.common.dictionary.enums.WebRole;
 import com.hydro.common.environment.AppEnvironmentService;
+import com.hydro.common.exception.InsufficientPermissionsException;
+import com.hydro.common.exception.NotFoundException;
 import com.hydro.common.jwt.utility.JwtHolder;
 import com.hydro.common.jwt.utility.JwtTokenUtil;
-import com.hydro.insite_common_microservice.util.HydroLogger;
-import com.hydro.insite_exception_microservice.exceptions.InsufficientPermissionsException;
-import com.hydro.insite_exception_microservice.exceptions.NotFoundException;
 import com.hydro.insite_hydro_system_microservice.client.domain.request.HydroSystemGetRequest;
 import com.hydro.insite_hydro_system_microservice.dao.HydroSystemDAO;
 import com.hydro.utility.factory.annotations.HydroServiceTest;
@@ -51,9 +50,6 @@ public class HydroSystemServiceTest {
 
     @Mock
     private JwtHolder jwtHolder;
-
-    @Mock
-    private HydroLogger logger;
 
     @InjectMocks
     private HydroSystemService service;

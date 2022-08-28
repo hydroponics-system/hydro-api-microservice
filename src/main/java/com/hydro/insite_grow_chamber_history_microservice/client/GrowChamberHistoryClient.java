@@ -1,6 +1,6 @@
 package com.hydro.insite_grow_chamber_history_microservice.client;
 
-import com.hydro.insite_common_microservice.annotations.interfaces.Client;
+import com.hydro.common.annotations.interfaces.Client;
 
 /**
  * Client method for Grow chamber history.

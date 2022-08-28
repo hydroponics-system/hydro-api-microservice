@@ -4,12 +4,13 @@ import java.security.Principal;
 import java.util.Map;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
 
 import com.hydro.common.jwt.utility.JwtHolder;
-import com.hydro.insite_common_microservice.util.HydroLogger;
 import com.hydro.insite_subscription_microservice.client.domain.UserPrincipal;
 
 /**
@@ -20,7 +21,7 @@ import com.hydro.insite_subscription_microservice.client.domain.UserPrincipal;
  */
 public class SubscriptionHandshakeHandler extends DefaultHandshakeHandler {
 
-    private HydroLogger LOGGER = new HydroLogger(SubscriptionHandshakeHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SubscriptionHandshakeHandler.class);
 
     private JwtHolder jwtHolder;
 

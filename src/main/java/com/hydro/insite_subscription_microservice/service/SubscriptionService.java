@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.stereotype.Component;
 
 import com.hydro.common.dictionary.enums.WebRole;
-import com.hydro.insite_common_microservice.util.HydroLogger;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationAction;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationBody;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationEnvelope;
@@ -25,8 +26,8 @@ import com.hydro.insite_subscription_microservice.client.domain.UserPrincipal;
  */
 @Component
 public class SubscriptionService {
-    @Autowired
-    private HydroLogger LOGGER;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SubscriptionService.class);
 
     @Autowired
     private WebNotifierService webNotifierService;

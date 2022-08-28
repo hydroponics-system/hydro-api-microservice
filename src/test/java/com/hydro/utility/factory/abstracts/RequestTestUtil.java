@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hydro.insite_exception_microservice.domain.ExceptionError;
+import com.hydro.common.exception.domain.ExceptionError;
 
 /**
  * Request Test Util for common test functionality.

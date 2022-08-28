@@ -14,9 +14,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
+import com.hydro.common.annotations.interfaces.ControllerJwt;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.jwt.utility.JwtTokenUtil;
-import com.hydro.insite_common_microservice.annotations.interfaces.ControllerJwt;
 
 /**
  * Base Test class for controllers performing rest endpoint calls.

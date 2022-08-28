@@ -1,4 +1,4 @@
-package com.hydro.insite_sql_microservice;
+package com.hydro.insite_sql_microservice.builder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -8,7 +8,6 @@ import javax.sql.DataSource;
 import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.hydro.insite_sql_microservice.builder.DatabaseConnectionBuilder;
 import com.hydro.utility.factory.annotations.HydroTest;
 
 /**

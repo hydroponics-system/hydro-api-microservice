@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import com.hydro.insite_common_microservice.abstracts.BaseDao;
+import com.hydro.common.abstracts.BaseDao;
 
 /**
  * Class for handling the dao calls for a user credentials

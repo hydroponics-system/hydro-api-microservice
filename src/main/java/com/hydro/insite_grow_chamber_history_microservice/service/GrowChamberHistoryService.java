@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Sets;
-import com.hydro.insite_exception_microservice.exceptions.NotFoundException;
+import com.hydro.common.exception.NotFoundException;
 import com.hydro.insite_grow_chamber_history_microservice.client.domain.GrowChamberLog;
 import com.hydro.insite_grow_chamber_history_microservice.client.domain.request.GrowChamberHistoryGetRequest;
 import com.hydro.insite_grow_chamber_history_microservice.dao.GrowChamberHistoryDAO;

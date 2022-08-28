@@ -5,13 +5,14 @@ import java.nio.file.Files;
 
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;
 
-import com.hydro.insite_common_microservice.util.HydroLogger;
 import com.hydro.insite_sql_microservice.builder.DatabaseConnectionBuilder;
 import com.hydro.insite_sql_microservice.local.dao.LocalInstanceBuilderDAO;
 
@@ -26,7 +27,7 @@ import com.hydro.insite_sql_microservice.local.dao.LocalInstanceBuilderDAO;
 @Component
 public class LocalInstanceBuilder {
 
-    private static final HydroLogger LOGGER = new HydroLogger(LocalInstanceBuilder.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LocalInstanceBuilder.class);
 
     private static final String LOCAL_HOST = "localhost";
 

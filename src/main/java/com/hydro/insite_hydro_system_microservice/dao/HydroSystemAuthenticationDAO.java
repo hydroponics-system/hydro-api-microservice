@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 
-import com.hydro.insite_common_microservice.abstracts.BaseDao;
-import com.hydro.insite_exception_microservice.exceptions.NotFoundException;
+import com.hydro.common.abstracts.BaseDao;
+import com.hydro.common.exception.NotFoundException;
 
 /**
  * Class that handles all the dao calls to the database for hydro system

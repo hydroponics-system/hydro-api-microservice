@@ -14,7 +14,7 @@ import org.springframework.test.context.jdbc.Sql;
 import com.google.common.collect.Sets;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.dictionary.enums.WebRole;
-import com.hydro.insite_exception_microservice.exceptions.NotFoundException;
+import com.hydro.common.exception.NotFoundException;
 import com.hydro.insite_user_microservice.client.domain.request.UserGetRequest;
 import com.hydro.utility.factory.annotations.HydroDaoTest;
 

@@ -3,8 +3,8 @@ package com.hydro.insite_user_microservice.client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
+import com.hydro.common.annotations.interfaces.Client;
 import com.hydro.common.dictionary.data.User;
-import com.hydro.insite_common_microservice.annotations.interfaces.Client;
 import com.hydro.insite_user_microservice.client.domain.PasswordUpdate;
 import com.hydro.insite_user_microservice.service.UserCredentialsService;
 

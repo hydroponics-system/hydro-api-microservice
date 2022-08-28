@@ -21,7 +21,6 @@ import org.springframework.messaging.simp.user.SimpUserRegistry;
 import com.google.common.collect.Sets;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.jwt.utility.JwtHolder;
-import com.hydro.insite_common_microservice.util.HydroLogger;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationAction;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationEnvelope;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationSocket;
@@ -46,9 +45,6 @@ public class SubscriptionServiceTest {
 
     @Mock
     private SimpUserRegistry userRegistry;
-
-    @Mock
-    private HydroLogger LOGGER;
 
     @InjectMocks
     private SubscriptionService service;

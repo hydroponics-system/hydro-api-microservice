@@ -4,7 +4,7 @@ import javax.sql.DataSource;
 
 import org.springframework.stereotype.Repository;
 
-import com.hydro.insite_common_microservice.abstracts.BaseDao;
+import com.hydro.common.abstracts.BaseDao;
 
 /**
  * Local instance builder dao for interacting with the users local database.

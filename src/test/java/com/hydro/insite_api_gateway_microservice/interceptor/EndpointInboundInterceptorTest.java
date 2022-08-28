@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.HttpStatus;
 
+import com.hydro.common.annotations.interfaces.ControllerJwt;
 import com.hydro.common.jwt.utility.JwtHolder;
 import com.hydro.insite_api_gateway_microservice.validator.EndpointInboundValidator;
-import com.hydro.insite_common_microservice.annotations.interfaces.ControllerJwt;
 import com.hydro.utility.factory.abstracts.BaseControllerTest;
 import com.hydro.utility.factory.annotations.HydroRestTest;
 

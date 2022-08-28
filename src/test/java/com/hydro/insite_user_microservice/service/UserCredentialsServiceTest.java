@@ -12,6 +12,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import org.apache.http.auth.InvalidCredentialsException;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
@@ -21,10 +22,9 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.dictionary.enums.WebRole;
+import com.hydro.common.exception.InsufficientPermissionsException;
 import com.hydro.common.jwt.utility.JwtHolder;
 import com.hydro.insite_auth_microservice.client.AuthenticationClient;
-import com.hydro.insite_exception_microservice.exceptions.InsufficientPermissionsException;
-import com.hydro.insite_exception_microservice.exceptions.InvalidCredentialsException;
 import com.hydro.insite_user_microservice.client.UserProfileClient;
 import com.hydro.insite_user_microservice.client.domain.PasswordUpdate;
 import com.hydro.insite_user_microservice.dao.UserCredentialsDAO;

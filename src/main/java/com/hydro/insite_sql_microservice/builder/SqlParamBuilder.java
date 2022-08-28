@@ -1,6 +1,6 @@
 package com.hydro.insite_sql_microservice.builder;
 
-import static com.hydro.insite_common_microservice.datetime.DateTimeMapper.printDate;
+import static com.hydro.common.datetime.DateTimeMapper.printDate;
 
 import java.time.LocalDateTime;
 import java.util.Collection;

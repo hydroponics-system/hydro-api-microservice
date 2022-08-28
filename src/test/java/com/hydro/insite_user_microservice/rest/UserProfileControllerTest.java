@@ -18,9 +18,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 
 import com.google.common.collect.Sets;
+import com.hydro.common.annotations.interfaces.ControllerJwt;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.dictionary.enums.WebRole;
-import com.hydro.insite_common_microservice.annotations.interfaces.ControllerJwt;
 import com.hydro.insite_user_microservice.client.domain.request.UserGetRequest;
 import com.hydro.insite_user_microservice.service.ManageUserProfileService;
 import com.hydro.insite_user_microservice.service.UserProfileService;

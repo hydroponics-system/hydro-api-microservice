@@ -18,8 +18,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import com.hydro.common.dictionary.data.User;
+import com.hydro.common.exception.NotFoundException;
 import com.hydro.common.jwt.utility.JwtHolder;
-import com.hydro.insite_exception_microservice.exceptions.NotFoundException;
 import com.hydro.insite_user_microservice.client.domain.request.UserGetRequest;
 import com.hydro.insite_user_microservice.dao.UserProfileDAO;
 import com.hydro.utility.factory.annotations.HydroServiceTest;

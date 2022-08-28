@@ -1,5 +1,7 @@
 package com.hydro.insite_subscription_microservice.stomp;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +13,6 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
 import com.hydro.common.jwt.utility.JwtHolder;
-import com.hydro.insite_common_microservice.util.HydroLogger;
 
 /**
  * Websocket config for setting ws endpoints and defining the handshake handler
@@ -23,11 +24,9 @@ import com.hydro.insite_common_microservice.util.HydroLogger;
 @Configuration
 @EnableWebSocketMessageBroker
 public class SubscriptionConfig implements WebSocketMessageBrokerConfigurer {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SubscriptionConfig.class);
     private final long DEFAULT_HEARTBEAT = 20000;
     private final String SOCKET_URI = "/subscription/socket";
-
-    @Autowired
-    private HydroLogger LOGGER;
 
     @Autowired
     private JwtHolder jwtHolder;

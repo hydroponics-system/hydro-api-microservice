@@ -1,10 +1,11 @@
 package com.hydro.insite_subscription_microservice.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
-import com.hydro.insite_common_microservice.util.HydroLogger;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationBody;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationEnvelope;
 
@@ -18,11 +19,10 @@ import com.hydro.insite_subscription_microservice.client.domain.NotificationEnve
 @Service
 public class WebNotifierService {
 
-    @Autowired
-    private SimpMessagingTemplate template;
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebNotifierService.class);
 
     @Autowired
-    private HydroLogger LOGGER;
+    private SimpMessagingTemplate template;
 
     /**
      * Send a Web Notification for a given subscription match with the User

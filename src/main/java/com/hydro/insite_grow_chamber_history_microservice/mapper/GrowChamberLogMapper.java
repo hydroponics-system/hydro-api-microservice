@@ -3,7 +3,7 @@ package com.hydro.insite_grow_chamber_history_microservice.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.hydro.insite_common_microservice.abstracts.AbstractMapper;
+import com.hydro.common.abstracts.AbstractMapper;
 import com.hydro.insite_grow_chamber_history_microservice.client.domain.GrowChamberLog;
 
 /**

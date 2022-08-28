@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hydro.common.annotations.interfaces.HasAccess;
+import com.hydro.common.annotations.interfaces.RestApiController;
 import com.hydro.common.dictionary.enums.WebRole;
-import com.hydro.insite_common_microservice.annotations.interfaces.HasAccess;
-import com.hydro.insite_common_microservice.annotations.interfaces.RestApiController;
 import com.hydro.insite_grow_chamber_history_microservice.client.domain.GrowChamberLog;
 import com.hydro.insite_grow_chamber_history_microservice.client.domain.request.GrowChamberHistoryGetRequest;
 import com.hydro.insite_grow_chamber_history_microservice.openapi.TagGrowChamberHistory;

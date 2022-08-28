@@ -9,8 +9,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 
 import com.google.common.net.HttpHeaders;
+import com.hydro.common.exception.JwtTokenException;
 import com.hydro.insite_api_gateway_microservice.domain.abstracts.CommonTokenValidator;
-import com.hydro.insite_exception_microservice.exceptions.JwtTokenException;
 
 /**
  * JWT token validator for confirming a token on a request header.

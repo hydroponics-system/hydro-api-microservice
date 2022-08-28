@@ -11,10 +11,10 @@ import org.springframework.util.StringUtils;
 
 import com.hydro.common.dictionary.enums.Environment;
 import com.hydro.common.environment.AppEnvironmentService;
+import com.hydro.common.exception.JwtTokenException;
 import com.hydro.common.jwt.utility.JwtHolder;
 import com.hydro.common.jwt.utility.JwtTokenUtil;
 import com.hydro.insite_api_gateway_microservice.domain.interfaces.BaseRequestValidator;
-import com.hydro.insite_exception_microservice.exceptions.JwtTokenException;
 
 /**
  * Common abstract validator for tokens.

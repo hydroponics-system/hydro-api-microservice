@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hydro.common.annotations.interfaces.RestApiController;
 import com.hydro.common.dictionary.data.HydroSystem;
 import com.hydro.insite_auth_microservice.client.domain.AuthToken;
-import com.hydro.insite_common_microservice.annotations.interfaces.RestApiController;
 import com.hydro.insite_hydro_system_microservice.client.domain.request.SystemAuthenticationRequest;
 import com.hydro.insite_hydro_system_microservice.openapi.TagHydroSystem;
 import com.hydro.insite_hydro_system_microservice.service.HydroSystemAuthenticationService;

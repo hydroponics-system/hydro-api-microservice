@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hydro.common.annotations.interfaces.HasAccess;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.dictionary.enums.WebRole;
-import com.hydro.insite_common_microservice.annotations.interfaces.HasAccess;
 import com.hydro.insite_user_microservice.client.domain.request.UserGetRequest;
 import com.hydro.insite_user_microservice.openapi.TagUser;
 import com.hydro.insite_user_microservice.service.ManageUserProfileService;

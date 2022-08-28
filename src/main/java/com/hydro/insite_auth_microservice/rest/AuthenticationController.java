@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hydro.common.annotations.interfaces.RestApiController;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.insite_auth_microservice.client.domain.AuthToken;
 import com.hydro.insite_auth_microservice.client.domain.request.AuthenticationRequest;
 import com.hydro.insite_auth_microservice.openapi.TagAuthentication;
 import com.hydro.insite_auth_microservice.service.AuthenticationService;
-import com.hydro.insite_common_microservice.annotations.interfaces.RestApiController;
 
 import io.swagger.v3.oas.annotations.Operation;
 
