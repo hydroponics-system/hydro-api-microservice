@@ -11,14 +11,16 @@ import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.ContextConfiguration;
 
+import com.hydro.InsiteMicroserviceApplication;
 import com.hydro.common.annotations.interfaces.ControllerJwt;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.dictionary.enums.WebRole;
 import com.hydro.insite_user_microservice.client.domain.PasswordUpdate;
 import com.hydro.insite_user_microservice.service.UserCredentialsService;
-import com.hydro.utility.factory.abstracts.BaseControllerTest;
-import com.hydro.utility.factory.annotations.HydroRestTest;
+import com.hydro.test.factory.abstracts.BaseControllerTest;
+import com.hydro.test.factory.annotations.HydroRestTest;
 
 /**
  * Test class for the User Credentials Controller.
@@ -26,6 +28,7 @@ import com.hydro.utility.factory.annotations.HydroRestTest;
  * @author Sam Butler
  * @since August 23, 2022
  */
+@ContextConfiguration(classes = InsiteMicroserviceApplication.class)
 @HydroRestTest
 @ControllerJwt
 public class UserCredentialsControllerTest extends BaseControllerTest {

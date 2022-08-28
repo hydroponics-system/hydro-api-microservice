@@ -16,16 +16,18 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.ContextConfiguration;
 
 import com.google.common.collect.Sets;
+import com.hydro.InsiteMicroserviceApplication;
 import com.hydro.common.annotations.interfaces.ControllerJwt;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.dictionary.enums.WebRole;
 import com.hydro.insite_user_microservice.client.domain.request.UserGetRequest;
 import com.hydro.insite_user_microservice.service.ManageUserProfileService;
 import com.hydro.insite_user_microservice.service.UserProfileService;
-import com.hydro.utility.factory.abstracts.BaseControllerTest;
-import com.hydro.utility.factory.annotations.HydroRestTest;
+import com.hydro.test.factory.abstracts.BaseControllerTest;
+import com.hydro.test.factory.annotations.HydroRestTest;
 
 /**
  * Test class for the User Profile Controller Test.
@@ -33,6 +35,7 @@ import com.hydro.utility.factory.annotations.HydroRestTest;
  * @author Sam Butler
  * @since August 23, 2022
  */
+@ContextConfiguration(classes = InsiteMicroserviceApplication.class)
 @HydroRestTest
 @ControllerJwt
 public class UserProfileControllerTest extends BaseControllerTest {
@@ -51,7 +54,7 @@ public class UserProfileControllerTest extends BaseControllerTest {
     @Test
     public void testGetListOfUsers() throws Exception {
         when(service.getUsers(any(UserGetRequest.class))).thenReturn(Arrays.asList(new User()));
-        check(get(USER_PROFILE_PATH, User[].class), serializedList(HttpStatus.OK));
+        check(get(USER_PROFILE_PATH, Object[].class), serializedList(HttpStatus.OK));
 
         verify(service).getUsers(any(UserGetRequest.class));
     }

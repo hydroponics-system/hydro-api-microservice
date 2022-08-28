@@ -1,7 +1,7 @@
 package com.hydro.insite_hydro_system_microservice.rest;
 
-import com.hydro.utility.factory.abstracts.BaseControllerTest;
-import com.hydro.utility.factory.annotations.HydroRestTest;
+import com.hydro.test.factory.abstracts.BaseControllerTest;
+import com.hydro.test.factory.annotations.HydroRestTest;
 
 /**
  * Test class for the Hydro System Authentication Controller.

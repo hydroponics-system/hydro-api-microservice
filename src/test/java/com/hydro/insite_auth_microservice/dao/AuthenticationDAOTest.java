@@ -8,10 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 
 import com.hydro.common.exception.NotFoundException;
-import com.hydro.utility.factory.annotations.HydroDaoTest;
+import com.hydro.test.factory.annotations.HydroDaoTest;
+import com.hydro.utility.HydroDAOTestConfig;
 
 /**
  * Test class for the Authenticate DAO.
@@ -20,6 +22,7 @@ import com.hydro.utility.factory.annotations.HydroDaoTest;
  * @since August 23, 2022
  */
 @Sql("/scripts/auth/authenticationDAO/init.sql")
+@ContextConfiguration(classes = HydroDAOTestConfig.class)
 @HydroDaoTest
 public class AuthenticationDAOTest {
 

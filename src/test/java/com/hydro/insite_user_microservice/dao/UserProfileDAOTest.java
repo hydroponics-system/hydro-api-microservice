@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 
 import com.google.common.collect.Sets;
@@ -16,7 +17,8 @@ import com.hydro.common.dictionary.data.User;
 import com.hydro.common.dictionary.enums.WebRole;
 import com.hydro.common.exception.NotFoundException;
 import com.hydro.insite_user_microservice.client.domain.request.UserGetRequest;
-import com.hydro.utility.factory.annotations.HydroDaoTest;
+import com.hydro.test.factory.annotations.HydroDaoTest;
+import com.hydro.utility.HydroDAOTestConfig;
 
 /**
  * Test class for the User DAO.
@@ -25,6 +27,7 @@ import com.hydro.utility.factory.annotations.HydroDaoTest;
  * @since August 23, 2022
  */
 @Sql("/scripts/user/userProfileDAO/init.sql")
+@ContextConfiguration(classes = HydroDAOTestConfig.class)
 @HydroDaoTest
 public class UserProfileDAOTest {
 

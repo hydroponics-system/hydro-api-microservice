@@ -26,7 +26,7 @@ import com.hydro.insite_subscription_microservice.client.domain.NotificationEnve
 import com.hydro.insite_subscription_microservice.client.domain.NotificationSocket;
 import com.hydro.insite_subscription_microservice.client.domain.UserPrincipal;
 import com.hydro.insite_subscription_microservice.notification.UserNotification;
-import com.hydro.utility.factory.annotations.HydroServiceTest;
+import com.hydro.test.factory.annotations.HydroServiceTest;
 
 /**
  * Test class for the Subscription Service.

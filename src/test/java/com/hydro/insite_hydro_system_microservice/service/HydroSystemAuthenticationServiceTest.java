@@ -1,6 +1,6 @@
 package com.hydro.insite_hydro_system_microservice.service;
 
-import com.hydro.utility.factory.annotations.HydroServiceTest;
+import com.hydro.test.factory.annotations.HydroServiceTest;
 
 /**
  * Test class for the Hydro System Authentication Service.

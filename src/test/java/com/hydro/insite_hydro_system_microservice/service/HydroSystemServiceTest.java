@@ -1,6 +1,6 @@
 package com.hydro.insite_hydro_system_microservice.service;
 
-import static com.hydro.utility.factory.data.HydroSystemFactoryData.hydroSystem;
+import static com.hydro.test.factory.data.HydroSystemFactoryData.hydroSystem;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -28,7 +28,7 @@ import com.hydro.common.jwt.utility.JwtHolder;
 import com.hydro.common.jwt.utility.JwtTokenUtil;
 import com.hydro.insite_hydro_system_microservice.client.domain.request.HydroSystemGetRequest;
 import com.hydro.insite_hydro_system_microservice.dao.HydroSystemDAO;
-import com.hydro.utility.factory.annotations.HydroServiceTest;
+import com.hydro.test.factory.annotations.HydroServiceTest;
 
 /**
  * Test class for the Hydro Service.

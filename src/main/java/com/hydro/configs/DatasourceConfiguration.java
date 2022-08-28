@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.hydro.insite_sql_microservice.builder.DatabaseConnectionBuilder;
-import com.hydro.insite_sql_microservice.local.service.LocalInstanceBuilder;
+import com.hydro.sql.builder.DatabaseConnectionBuilder;
+import com.hydro.sql.local.service.LocalInstanceBuilder;
 
 /**
  * Application Configs for datasource objects.

@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.jdbc.JdbcTestUtils;
 
-import com.hydro.utility.factory.annotations.HydroDaoTest;
+import com.hydro.test.factory.annotations.HydroDaoTest;
+import com.hydro.utility.HydroDAOTestConfig;
 
 /**
  * Test class for the User Credentials DAO.
@@ -21,6 +23,7 @@ import com.hydro.utility.factory.annotations.HydroDaoTest;
  * @since August 23, 2022
  */
 @Sql("/scripts/user/userCredentialsDAO/init.sql")
+@ContextConfiguration(classes = HydroDAOTestConfig.class)
 @HydroDaoTest
 public class UserCredentialsDAOTest {
 

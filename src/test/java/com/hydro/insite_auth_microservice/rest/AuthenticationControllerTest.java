@@ -6,14 +6,16 @@ import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.ContextConfiguration;
 
+import com.hydro.InsiteMicroserviceApplication;
 import com.hydro.common.annotations.interfaces.ControllerJwt;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.insite_auth_microservice.client.domain.AuthToken;
 import com.hydro.insite_auth_microservice.client.domain.request.AuthenticationRequest;
 import com.hydro.insite_auth_microservice.service.AuthenticationService;
-import com.hydro.utility.factory.abstracts.BaseControllerTest;
-import com.hydro.utility.factory.annotations.HydroRestTest;
+import com.hydro.test.factory.abstracts.BaseControllerTest;
+import com.hydro.test.factory.annotations.HydroRestTest;
 
 /**
  * Test class for the Authenticate Controller.
@@ -21,6 +23,7 @@ import com.hydro.utility.factory.annotations.HydroRestTest;
  * @author Sam Butler
  * @since August 23, 2022
  */
+@ContextConfiguration(classes = InsiteMicroserviceApplication.class)
 @HydroRestTest
 public class AuthenticationControllerTest extends BaseControllerTest {
 

@@ -9,14 +9,16 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 
 import com.google.common.collect.Sets;
 import com.hydro.common.dictionary.data.HydroSystem;
 import com.hydro.common.dictionary.data.PartNumber;
 import com.hydro.insite_hydro_system_microservice.client.domain.request.HydroSystemGetRequest;
-import com.hydro.utility.factory.annotations.HydroDaoTest;
-import com.hydro.utility.factory.data.HydroSystemFactoryData;
+import com.hydro.test.factory.annotations.HydroDaoTest;
+import com.hydro.test.factory.data.HydroSystemFactoryData;
+import com.hydro.utility.HydroDAOTestConfig;
 
 /**
  * Test class for the Hydro System DAO.
@@ -25,6 +27,7 @@ import com.hydro.utility.factory.data.HydroSystemFactoryData;
  * @since August 23, 2022
  */
 @Sql("/scripts/system/hydrosystemDAO/init.sql")
+@ContextConfiguration(classes = HydroDAOTestConfig.class)
 @HydroDaoTest
 public class HydroSystemDAOTest {
 

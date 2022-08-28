@@ -16,11 +16,11 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.google.common.collect.Sets;
-import com.hydro.common.abstracts.BaseDao;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.exception.NotFoundException;
-import com.hydro.insite_sql_microservice.builder.SqlParamBuilder;
 import com.hydro.insite_user_microservice.client.domain.request.UserGetRequest;
+import com.hydro.sql.abstracts.BaseDao;
+import com.hydro.sql.builder.SqlParamBuilder;
 
 /**
  * Class that handles all the dao calls to the database for users

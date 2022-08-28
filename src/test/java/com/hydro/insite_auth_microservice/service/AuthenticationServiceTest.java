@@ -26,7 +26,7 @@ import com.hydro.insite_auth_microservice.client.domain.request.AuthenticationRe
 import com.hydro.insite_auth_microservice.dao.AuthenticationDAO;
 import com.hydro.insite_user_microservice.client.UserProfileClient;
 import com.hydro.insite_user_microservice.client.domain.request.UserGetRequest;
-import com.hydro.utility.factory.annotations.HydroServiceTest;
+import com.hydro.test.factory.annotations.HydroServiceTest;
 
 /**
  * Test class for the Authenticate Service.

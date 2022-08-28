@@ -12,10 +12,10 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import com.hydro.common.abstracts.BaseDao;
 import com.hydro.common.dictionary.data.HydroSystem;
 import com.hydro.insite_hydro_system_microservice.client.domain.request.HydroSystemGetRequest;
-import com.hydro.insite_sql_microservice.builder.SqlParamBuilder;
+import com.hydro.sql.abstracts.BaseDao;
+import com.hydro.sql.builder.SqlParamBuilder;
 
 /**
  * Class that handles all the dao calls to the database for grow chamber logs.

@@ -3,10 +3,10 @@ package com.hydro.insite_hydro_system_microservice.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.hydro.common.abstracts.AbstractMapper;
 import com.hydro.common.dictionary.data.HydroSystem;
 import com.hydro.common.dictionary.data.PartNumber;
 import com.hydro.insite_grow_chamber_history_microservice.client.domain.GrowChamberLog;
+import com.hydro.sql.abstracts.AbstractMapper;
 
 /**
  * Mapper class to map a Grow Chamber Log Object {@link GrowChamberLog}

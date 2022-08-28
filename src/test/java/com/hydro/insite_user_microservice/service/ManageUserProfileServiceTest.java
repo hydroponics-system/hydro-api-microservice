@@ -20,8 +20,8 @@ import com.hydro.common.exception.NotFoundException;
 import com.hydro.common.jwt.utility.JwtHolder;
 import com.hydro.insite_user_microservice.client.UserCredentialsClient;
 import com.hydro.insite_user_microservice.dao.UserProfileDAO;
-import com.hydro.utility.factory.annotations.HydroServiceTest;
-import com.hydro.utility.factory.data.UserFactoryData;
+import com.hydro.test.factory.annotations.HydroServiceTest;
+import com.hydro.test.factory.data.UserFactoryData;
 
 /**
  * Test class for the Manage User Profile Service.

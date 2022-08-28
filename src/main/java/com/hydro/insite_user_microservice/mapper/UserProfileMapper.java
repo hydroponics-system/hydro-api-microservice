@@ -3,9 +3,9 @@ package com.hydro.insite_user_microservice.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.hydro.common.abstracts.AbstractMapper;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.dictionary.enums.WebRole;
+import com.hydro.sql.abstracts.AbstractMapper;
 
 /**
  * Mapper class to map a User Profile Object {@link User}
