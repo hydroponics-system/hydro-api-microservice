@@ -10,7 +10,7 @@ buildscript {
 		elsql_version = '1.2'
 		google_bugs_version = '3.0.2'
 		apache_http_version = '4.5.13'
-		hydro_common = '1.3.3'
+		hydro_common_microservice = '1.3.7'
     }
 }
 
@@ -51,7 +51,7 @@ dependencies {
 	implementation "io.swagger.core.v3:swagger-annotations:${swagger_version}"
 	implementation "org.springdoc:springdoc-openapi-ui:${spring_doc_openapi_version}"
 	implementation "org.apache.httpcomponents:httpclient:${apache_http_version}"
-	implementation "com.github.hydroponics-system:hydro-common-microservice:v${hydro_common}"
+	implementation "com.github.hydroponics-system:hydro-common-microservice:v${hydro_common_microservice}"
 
 	runtimeOnly "mysql:mysql-connector-java:${mysql_connector_version}"
 
