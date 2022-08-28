@@ -11,10 +11,10 @@ buildscript {
 		google_bugs_version = '3.0.2'
 		apache_http_version = '4.5.13'
 
-		hydro_common_microservice = '1.3.11'
-		hydro_api_gateway_microservice = '1.5.1'
-		hydro_test_microservice = '1.3.5'
-		hydro_sql_microservice = '1.3.4'
+		hydro_common_microservice = '1.3.12'
+		hydro_api_gateway_microservice = '1.5.3'
+		hydro_test_microservice = '1.3.7'
+		hydro_sql_microservice = '1.3.6'
     }
 }
 
