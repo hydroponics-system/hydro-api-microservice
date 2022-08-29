@@ -35,7 +35,6 @@ jobs:
           MYSQL_TEST_PASSWORD: ${{ secrets.MYSQL_TEST_PASSWORD }}
           MYSQL_TEST_URL: ${{ secrets.MYSQL_TEST_URL }}
           JWT_SIGNING_KEY: ${{ secrets.JWT_SIGNING_KEY }}
-          SYSTEM_REGISTRATION_KEY: ${{ secrets.SYSTEM_REGISTRATION_KEY }}
         uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
         with:
           arguments: build
