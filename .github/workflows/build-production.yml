@@ -1,6 +1,6 @@
 # Workflow will build the hydroponics application on push to the branch and pull request for the branch.
 
-name: Build Production
+name: Hydro API Build
 
 on:
   push:
