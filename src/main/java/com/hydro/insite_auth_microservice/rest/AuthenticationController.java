@@ -2,8 +2,6 @@ package com.hydro.insite_auth_microservice.rest;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hydro.common.annotations.interfaces.RestApiController;
 import com.hydro.common.dictionary.data.User;
-import com.hydro.common.environment.AppEnvironmentService;
 import com.hydro.insite_auth_microservice.client.domain.AuthToken;
 import com.hydro.insite_auth_microservice.client.domain.request.AuthenticationRequest;
 import com.hydro.insite_auth_microservice.openapi.TagAuthentication;
@@ -31,13 +28,8 @@ import io.swagger.v3.oas.annotations.Operation;
 @TagAuthentication
 public class AuthenticationController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationController.class);
-
     @Autowired
     private AuthenticationService service;
-
-    @Autowired
-    private AppEnvironmentService environmentService;
 
     /**
      * Generates a JWT token from a request
@@ -50,7 +42,6 @@ public class AuthenticationController {
     @PostMapping(path = "/authenticate", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<AuthToken<User>> authenticateUser(@RequestBody AuthenticationRequest authenticationRequest)
             throws Exception {
-        LOGGER.info("Environment Signing Key: '{}'", environmentService.getSigningKey());
         return ResponseEntity.ok(service.authenticate(authenticationRequest));
     }
 
