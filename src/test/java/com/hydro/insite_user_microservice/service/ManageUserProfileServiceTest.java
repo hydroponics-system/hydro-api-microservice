@@ -44,6 +44,16 @@ public class ManageUserProfileServiceTest {
     @InjectMocks
     private ManageUserProfileService service;
 
+    // @Test
+    // public void testFake() {
+    // String temp =
+    // "eyJhbGciOiJIUzUxMiJ9.eyJ3ZWJSb2xlIjoiVVNFUiIsImZpcnN0TmFtZSI6IlNhbXVlbCIsImxhc3ROYW1lIjoiQnV0bGVyIiwicGFzc3dvcmRSZXNldCI6ZmFsc2UsImVudiI6IkxPQ0FMIiwiZXhwIjoxNjYxNzQ5NjYwLCJ1c2VySWQiOjEsImlhdCI6MTY2MTczMTY2MCwiZW1haWwiOiJzYW1idXRsZXIxMDE3QGljbG91ZC5jb20iLCJqd3RUeXBlIjoiV0VCIn0.famJlEmvyRtmHmdDr5nsIkrkRHdrU1zsZlwFeNvwsqdlkH3i6E-jYCrxVn1kxF3kNQ7z7CNpyL5mIEtapZAxXQ";
+    // Claims newData = (Claims) Jwts.parser()
+    // .setSigningKey("155e821eb53ac3597c7b723d68acf386279f132e3336768c8aecc4b65e5be031").parse(temp)
+    // .getBody();
+    // int test = 1;
+    // }
+
     @Test
     public void testCreateUser() throws Exception {
         User newUser = new User();
