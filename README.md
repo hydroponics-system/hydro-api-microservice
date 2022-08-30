@@ -74,17 +74,20 @@ To get a local copy up and running follow these simple steps.
    https://www.postman.com/downloads/
    ```
 
-2. Next, in the project you will want to copy the `application.local.template.propteries` file and paste it and rename it to `application.local.properties`.
+2. Next, in the project you will want to copy the `application-local.template.yml` file and paste it and rename it to `application-local.properties`.
 
 3. Then inside you will want to update the following fields:
-   ```sh
-   spring.datasource.url=<MYSQL_URL>
-   spring.datasource.username=<MYSQL_USERNAME>
-   spring.datasource.password=<MYSQL_PASSWORD>
+   ```yml
+    spring:
+      datasource:
+        username: <MYSQL_USERNAME>
+        password: <MYSQL_USERNAME>
+        url: <MYSQL_URL>
    ```
    - Note: These values are your own database information. You will need to have your own database for this. Either one that is local on your machine or hosted.
    - For example, for the datasource url:
      - `jdbc:mysql://<IP OR DOMAIN>/<SCHEMA>`
+   - The db migiration scripts are in the repo on how to recreate the database. If this is run locally it will create the local schema on the database hosted on your        machine.
 4. Finally, everything is set up and you can run the following command to start a local instance of the project.
    ```sh
    gradle bootrun
