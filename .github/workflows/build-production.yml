@@ -12,8 +12,8 @@ permissions:
 
 jobs:
   build:
+    name: Hydro API Microservice Build
     runs-on: windows-latest
-
     steps:
       - uses: actions/checkout@v3
         with:
