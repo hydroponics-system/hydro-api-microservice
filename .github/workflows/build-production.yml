@@ -38,4 +38,4 @@ jobs:
         with:
           arguments: build
       - name: Release Version
-        uses: hydroponics-system/hydro-api-microservice/blob/master/.github/workflows/release.yml@master
+        uses: hydroponics-system/hydro-api-microservice/.github/workflows/release.yml@master
