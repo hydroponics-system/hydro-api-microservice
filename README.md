@@ -1,4 +1,4 @@
-# Hydroponics API [![Build Status](https://github.com/hydroponics-system/hydro-api-microservice/actions/workflows/build-production.yml/badge.svg)](https://github.com/hydroponics-system/hydro-api-microservice/actions)
+# Hydroponics API Terst [![Build Status](https://github.com/hydroponics-system/hydro-api-microservice/actions/workflows/build-production.yml/badge.svg)](https://github.com/hydroponics-system/hydro-api-microservice/actions)
 
 - @JosueVanDyke add description
   - Explain what hydroponics are
