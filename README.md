@@ -34,17 +34,8 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-1. You will first have to make sure that you have gradle installed on your computer. If not then you will want to go to the following link.
-   ```sh
-   https://gradle.org/install/
-   ```
-2. If you are not sure if you have gradle installed, run the following command in the command prompt.
-   ```sh
-   gradle -v
-   ```
-   - If a version of gradle is displayed then you have gradle on your system.
-3. Next you will need an IDE, you can either use Vscode or Eclipse for this (It does not matter, both work the same)
-4. Then you will need a jdk installed in your computer of 11 or higher. You can go to the following link to do this.
+1. First you will need an IDE, you can either use Vscode or Eclipse for this (It does not matter, both work the same)
+2. Then you will need a jdk installed in your computer of 11 or higher. You can go to the following link to do this.
    ```sh
    https://jdk.java.net/java-se-ri/14
    ```
