@@ -39,4 +39,5 @@ jobs:
           arguments: build
   on-release: 
     name: Release Version
+    needs: build
     uses: hydroponics-system/hydro-api-microservice/.github/workflows/release.yml@master
