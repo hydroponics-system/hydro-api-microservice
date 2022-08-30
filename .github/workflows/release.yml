@@ -3,10 +3,7 @@
 name: Release Version
 
 on:
-  workflow_run:
-    workflows: ["Hydro API Build"]
-    types: [completed]
-    branches: [master]
+  workflow_call:
 
 jobs:
   on-success:
