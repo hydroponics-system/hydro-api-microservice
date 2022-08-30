@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - "**"
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -37,7 +38,3 @@ jobs:
         uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
         with:
           arguments: build
-  on-release: 
-    name: Release Version
-    needs: build
-    uses: hydroponics-system/hydro-api-microservice/.github/workflows/release.yml@master
