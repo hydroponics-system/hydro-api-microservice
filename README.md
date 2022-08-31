@@ -1,6 +1,6 @@
 # Hydroponics API [![Build Status](https://github.com/hydroponics-system/hydro-api-microservice/actions/workflows/build-production.yml/badge.svg)](https://github.com/hydroponics-system/hydro-api-microservice/actions)
 
-- @JosueVanDyke add description
+- @JosueVanDyke add description.
   - Explain what hydroponics are
   - The purpose of this repository
 
@@ -69,16 +69,16 @@ To get a local copy up and running follow these simple steps.
 
 3. Then inside you will want to update the following fields:
    ```yml
-    spring:
-      datasource:
-        username: <MYSQL_USERNAME>
-        password: <MYSQL_USERNAME>
-        url: <MYSQL_URL>
+   spring:
+     datasource:
+       username: <MYSQL_USERNAME>
+       password: <MYSQL_USERNAME>
+       url: <MYSQL_URL>
    ```
    - Note: These values are your own database information. You will need to have your own database for this. Either one that is local on your machine or hosted.
    - For example, for the datasource url:
      - `jdbc:mysql://<IP OR DOMAIN>/<SCHEMA>`
-   - The db migiration scripts are in the repo on how to recreate the database. If this is run locally it will create the local schema on the database hosted on your        machine.
+   - The db migiration scripts are in the repo on how to recreate the database. If this is run locally it will create the local schema on the database hosted on your machine.
 4. Finally, everything is set up and you can run the following command to start a local instance of the project.
    ```sh
    gradle bootrun
