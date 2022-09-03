@@ -11,8 +11,7 @@ import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.stereotype.Component;
 
 import com.hydro.common.dictionary.enums.WebRole;
-import com.hydro.insite_subscription_microservice.client.domain.NotificationAction;
-import com.hydro.insite_subscription_microservice.client.domain.NotificationBody;
+import com.hydro.insite_subscription_microservice.client.domain.Notification;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationSocket;
 import com.hydro.insite_subscription_microservice.client.domain.UserPrincipal;
 
@@ -34,76 +33,38 @@ public class SubscriptionService {
     private SimpUserRegistry userRegistry;
 
     /**
-     * Push a web notification. It will perform a {@link NotificationAction#CREATE}
-     * with the passed in notification body. Default path this will be sent to is
+     * Push a web notification. Default path this will be sent to is
      * {@link NotificationSocket#GENERAL}
      * 
      * @param body The body to be sent.
      */
-    public void push(NotificationBody body) {
+    public void push(Notification body) {
         push(body, NotificationSocket.GENERAL);
     }
 
     /**
-     * Push a web notification. It will perform a {@link NotificationAction#CREATE}
-     * with the passed in notification body.
-     * 
-     * @param body   The body to be sent.
-     * @param socket The socket path the notification should be sent too.
-     */
-    public void push(NotificationBody body, NotificationSocket socket) {
-        push(NotificationAction.CREATE, body, socket);
-    }
-
-    /**
-     * Push a web notification. It will perform a {@link NotificationAction#CREATE}
-     * with the passed in notification body.
+     * Push a web notification.
      * 
      * @param action The action to perform.
      * @param body   The body to be sent.
      * @param socket The socket path the notification should be sent too.
      */
-    public void push(NotificationAction action, NotificationBody body, NotificationSocket socket) {
+    public void push(Notification body, NotificationSocket socket) {
         webNotifierService.send(body, socket);
     }
 
     /**
-     * Push a web notification to the given user Id. It will perform a
-     * {@link NotificationAction#CREATE} with the passed in notification body.
-     * 
-     * @param body   The body to be sent.
-     * @param socket The socket path the notification should be sent too.
-     * @param userId The user id of the user to send it too.
-     */
-    public void push(NotificationBody body, NotificationSocket socket, int userId) {
-        push(NotificationAction.CREATE, body, socket, userId);
-    }
-
-    /**
-     * Push a web notification to a user. It will perform a notification action with
-     * the passed in notification body.
+     * Push a web notification to a user.
      * 
      * @param action The action to perform.
      * @param body   The body to be sent.
      * @param socket The socket path the notification should be sent too.
      * @param userId The user id of the user to send it too.
      */
-    public void push(NotificationAction action, NotificationBody body, NotificationSocket socket, int userId) {
+    public void push(Notification body, NotificationSocket socket, int userId) {
         getUserSessionByUserId(userId)
                 .ifPresentOrElse(u -> webNotifierService.send(body, socket, u.getName()),
                                  () -> LOGGER.warn("No subscription found for user ID '{}'", userId));
-    }
-
-    /**
-     * Push a web notification to the given Web Role. It will perform a
-     * {@link NotificationAction#CREATE} with the passed in notification body.
-     * 
-     * @param body   The body to be sent.
-     * @param socket The socket path the notification should be sent too.
-     * @param role   The role of the user to send it too.
-     */
-    public void push(NotificationBody body, NotificationSocket socket, WebRole role) {
-        push(NotificationAction.CREATE, body, socket, role);
     }
 
     /**
@@ -115,7 +76,7 @@ public class SubscriptionService {
      * @param socket The socket path the notification should be sent too.
      * @param role   The role of the user to send it too.
      */
-    public void push(NotificationAction action, NotificationBody body, NotificationSocket socket, WebRole role) {
+    public void push(Notification body, NotificationSocket socket, WebRole role) {
         List<UserPrincipal> sessionList = getUserSessionByWebRole(role);
         if(sessionList.isEmpty()) {
             LOGGER.warn("No subscription sessions found for web role '{}'", role.toString());

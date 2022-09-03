@@ -2,8 +2,8 @@ package com.hydro.insite_subscription_microservice.notification;
 
 import java.time.LocalDateTime;
 
-import com.hydro.insite_subscription_microservice.client.domain.NotificationBody;
-import com.hydro.insite_subscription_microservice.client.domain.NotificationBodyType;
+import com.hydro.insite_subscription_microservice.client.domain.Notification;
+import com.hydro.insite_subscription_microservice.client.domain.NotificationType;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -14,7 +14,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @since July 28, 2022
  */
 @Schema(description = "System Failure Subscription for notifications")
-public class SystemFailureNotification implements NotificationBody {
+public class SystemFailureNotification implements Notification {
     @Schema(description = "Message information about the system failure.")
     private String message;
 
@@ -38,7 +38,7 @@ public class SystemFailureNotification implements NotificationBody {
     }
 
     @Override
-    public NotificationBodyType getBodyType() {
-        return NotificationBodyType.SYSTEM_FAILURE;
+    public NotificationType getType() {
+        return NotificationType.SYSTEM_FAILURE;
     }
 }

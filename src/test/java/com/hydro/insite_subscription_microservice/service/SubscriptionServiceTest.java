@@ -20,8 +20,7 @@ import org.springframework.messaging.simp.user.SimpUserRegistry;
 import com.google.common.collect.Sets;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.jwt.utility.JwtHolder;
-import com.hydro.insite_subscription_microservice.client.domain.NotificationAction;
-import com.hydro.insite_subscription_microservice.client.domain.NotificationBody;
+import com.hydro.insite_subscription_microservice.client.domain.Notification;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationSocket;
 import com.hydro.insite_subscription_microservice.client.domain.UserPrincipal;
 import com.hydro.insite_subscription_microservice.notification.UserNotification;
@@ -49,7 +48,7 @@ public class SubscriptionServiceTest {
     private SubscriptionService service;
 
     @Captor
-    private ArgumentCaptor<NotificationBody> sendNotificationCaptor;
+    private ArgumentCaptor<Notification> sendNotificationCaptor;
 
     @Captor
     private ArgumentCaptor<NotificationSocket> notificationSocketCaptor;
@@ -94,7 +93,7 @@ public class SubscriptionServiceTest {
         verify(webNotifierService).send(sendNotificationCaptor.capture(), notificationSocketCaptor.capture(),
                                         anyString());
 
-        NotificationBody body = sendNotificationCaptor.getValue();
+        Notification body = sendNotificationCaptor.getValue();
         assertEquals(body.getClass(), UserNotification.class, "Should be UserNotification class");
 
         UserNotification u = (UserNotification) body;
@@ -107,12 +106,12 @@ public class SubscriptionServiceTest {
 
     @Test
     public void testPushWithBodyAndNotificationAction() {
-        service.push(NotificationAction.DELETE, new UserNotification(), NotificationSocket.USER, 12);
+        service.push(new UserNotification(), NotificationSocket.USER, 12);
 
         verify(webNotifierService).send(sendNotificationCaptor.capture(), notificationSocketCaptor.capture(),
                                         anyString());
 
-        NotificationBody body = sendNotificationCaptor.getValue();
+        Notification body = sendNotificationCaptor.getValue();
         assertEquals(body.getClass(), UserNotification.class, "Should be UserSubscription class");
         assertEquals("/queue/user/notification", notificationSocketCaptor.getValue().path(),
                      "Notification Destination");

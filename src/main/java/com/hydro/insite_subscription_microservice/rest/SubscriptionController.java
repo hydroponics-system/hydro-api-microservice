@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.hydro.common.annotations.interfaces.HasAccess;
 import com.hydro.common.annotations.interfaces.RestApiController;
 import com.hydro.common.dictionary.enums.WebRole;
-import com.hydro.insite_subscription_microservice.client.domain.NotificationBody;
+import com.hydro.insite_subscription_microservice.client.domain.Notification;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationSocket;
 import com.hydro.insite_subscription_microservice.client.domain.UserPrincipal;
 import com.hydro.insite_subscription_microservice.openapi.TagSubscription;
@@ -39,7 +39,7 @@ public class SubscriptionController {
     @Operation(summary = "Sends a notification to all subscriptions.", description = "Will send the notification body to the subscription microservice.")
     @PostMapping(path = "/notification")
     @HasAccess(WebRole.DEVELOPER)
-    public void pushNotification(@RequestBody NotificationBody body) {
+    public void pushNotification(@RequestBody Notification body) {
         service.push(body);
     }
 
@@ -55,7 +55,7 @@ public class SubscriptionController {
     @Operation(summary = "Sends a notification to the user", description = "Will send the notification body to the subscription microservice.")
     @PostMapping(path = "/notification/{id}/id")
     @HasAccess(WebRole.DEVELOPER)
-    public void pushNotificationToUser(@RequestBody NotificationBody body, @PathVariable int id) {
+    public void pushNotificationToUser(@RequestBody Notification body, @PathVariable int id) {
         service.push(body, NotificationSocket.USER, id);
     }
 
@@ -69,7 +69,7 @@ public class SubscriptionController {
     @Operation(summary = "Sends a notification to the user with the matching role", description = "Will send the notification body to the subscription microservice witht the given web role.")
     @PostMapping(path = "/notification/{role}/role")
     @HasAccess(WebRole.DEVELOPER)
-    public void pushNotificationToUser(@RequestBody NotificationBody body, @PathVariable WebRole role) {
+    public void pushNotificationToUser(@RequestBody Notification body, @PathVariable WebRole role) {
         service.push(body, NotificationSocket.USER, role);
     }
 

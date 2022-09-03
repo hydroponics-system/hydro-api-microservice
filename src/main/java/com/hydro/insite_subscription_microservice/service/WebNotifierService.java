@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
-import com.hydro.insite_subscription_microservice.client.domain.NotificationBody;
-import com.hydro.insite_subscription_microservice.client.domain.NotificationEnvelope;
+import com.hydro.insite_subscription_microservice.client.domain.Notification;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationSocket;
 
 /**
@@ -29,10 +28,10 @@ public class WebNotifierService {
      * Send a Web Notification for a given subscription match with the User
      * Notification set.
      * 
-     * @param envelope {@link NotificationEnvelope} to be sent.
+     * @param envelope {@link Notification} to be sent.
      */
-    public <T extends NotificationBody> void send(T body, NotificationSocket destination) {
-        LOGGER.info("Sending Web Notification to '{}' with type '{}'", destination.path(), body.getBodyType());
+    public <T extends Notification> void send(T body, NotificationSocket destination) {
+        LOGGER.info("Sending Web Notification to '{}' with type '{}'", destination.path(), body.getType());
         sendNotification(destination.path(), body);
     }
 
@@ -40,12 +39,12 @@ public class WebNotifierService {
      * Send a Web Notification for a given subscription match with the User
      * Notification set to a single user.
      * 
-     * @param envelope    {@link NotificationEnvelope} to be sent.
+     * @param envelope    {@link Notification} to be sent.
      * @param sessionUUID The unique session id for the user.
      */
-    public <T extends NotificationBody> void send(T body, NotificationSocket destination, String sessionUUID) {
+    public <T extends Notification> void send(T body, NotificationSocket destination, String sessionUUID) {
         LOGGER.info("Sending Web Notification to '{}' with type '{}'",
-                    String.format("%s-%s", destination.path(), sessionUUID), body.getBodyType());
+                    String.format("%s-%s", destination.path(), sessionUUID), body.getType());
         sendNotification(String.format("%s-%s", destination.path(), sessionUUID), body);
     }
 
@@ -57,7 +56,7 @@ public class WebNotifierService {
      * @param envelope    The body to be sent.
      * @param destination Where the notification should go.
      */
-    private <T extends NotificationBody> void sendNotification(String destination, T envelope) {
+    private <T extends Notification> void sendNotification(String destination, T envelope) {
         template.convertAndSend(destination, envelope);
     }
 }

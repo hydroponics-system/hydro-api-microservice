@@ -1,7 +1,7 @@
 package com.hydro.insite_subscription_microservice.notification;
 
-import com.hydro.insite_subscription_microservice.client.domain.NotificationBody;
-import com.hydro.insite_subscription_microservice.client.domain.NotificationBodyType;
+import com.hydro.insite_subscription_microservice.client.domain.Notification;
+import com.hydro.insite_subscription_microservice.client.domain.NotificationType;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -12,7 +12,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @since March 24, 2022
  */
 @Schema(description = "User Subscription for notifications")
-public class UserNotification implements NotificationBody {
+public class UserNotification implements Notification {
     @Schema(description = "The user id of the new user.")
     private int userId;
 
@@ -36,7 +36,7 @@ public class UserNotification implements NotificationBody {
     }
 
     @Override
-    public NotificationBodyType getBodyType() {
-        return NotificationBodyType.USER;
+    public NotificationType getType() {
+        return NotificationType.USER;
     }
 }

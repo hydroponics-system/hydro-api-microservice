@@ -9,13 +9,13 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * @author Sam Butler
  * @since March 24, 2022
  */
-@JsonDeserialize(as = NotificationBodyImplementation.class)
-public interface NotificationBody {
+@JsonDeserialize(as = NotificationImplementation.class)
+public interface Notification {
 
     /**
      * A text value identifying the notification body type.
      * 
      * @return NotificationBodyType
      */
-    NotificationBodyType getBodyType();
+    NotificationType getType();
 }

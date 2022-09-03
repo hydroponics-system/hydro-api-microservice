@@ -5,8 +5,7 @@ import org.springframework.web.reactive.socket.server.WebSocketService;
 
 import com.hydro.common.annotations.interfaces.Client;
 import com.hydro.common.dictionary.enums.WebRole;
-import com.hydro.insite_subscription_microservice.client.domain.NotificationAction;
-import com.hydro.insite_subscription_microservice.client.domain.NotificationBody;
+import com.hydro.insite_subscription_microservice.client.domain.Notification;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationSocket;
 import com.hydro.insite_subscription_microservice.service.SubscriptionService;
 
@@ -24,82 +23,44 @@ public class SubscriptionClient {
     private SubscriptionService service;
 
     /**
-     * Push a web notification to the socket. It will perform a
-     * {@link NotificationAction#CREATE} with the passed in notification body.
-     * Default path this will be sent to is {@link NotificationSocket#GENERAL}
+     * Push a web notification to the socket. Default path this will be sent to is
+     * {@link NotificationSocket#GENERAL}
      * 
      * @param body The body to be sent.
      */
-    public void push(NotificationBody body) {
+    public void push(Notification body) {
         service.push(body, NotificationSocket.GENERAL);
     }
 
     /**
-     * Push a web notification to the socket. It will perform a
-     * {@link NotificationAction#CREATE} with the passed in notification body.
-     * 
-     * @param body   The body to be sent.
-     * @param socket The socket path the notification should be sent too.
-     */
-    public void push(NotificationBody body, NotificationSocket socket) {
-        service.push(NotificationAction.CREATE, body, socket);
-    }
-
-    /**
-     * Push a web notification to the socket. It will perform a
-     * {@link NotificationAction#CREATE} with the passed in notification body.
+     * Push a web notification to the socket.
      * 
      * @param action The action to perform.
      * @param body   The body to be sent.
      * @param socket The socket path the notification should be sent too.
      */
-    public void push(NotificationAction action, NotificationBody body, NotificationSocket socket) {
-        service.push(action, body, socket);
+    public void push(Notification body, NotificationSocket socket) {
+        service.push(body, socket);
     }
 
     /**
-     * Push a web notification. It will perform a {@link NotificationAction#CREATE}
-     * with the passed in notification body.
+     * Push a web notification.
      * 
      * @param action The action to perform.
      * @param body   The body to be sent.
      * @param userId Where the notification is going.
      */
-    public void push(NotificationBody body, NotificationSocket socket, int userId) {
+    public void push(Notification body, NotificationSocket socket, int userId) {
         service.push(body, socket, userId);
     }
 
     /**
-     * Push a web notification. It will perform a notification action with the
-     * passed in notification body.
-     * 
-     * @param action The action to perform.
-     * @param body   The body to be sent.
-     * @param userId Where the notification is going.
-     */
-    public void push(NotificationAction action, NotificationBody body, NotificationSocket socket, int userId) {
-        service.push(action, body, socket, userId);
-    }
-
-    /**
-     * Push a web notification to the given Web Role. It will perform a
-     * {@link NotificationAction#CREATE} with the passed in notification body.
+     * Push a web notification to the given Web Role.
      * 
      * @param body   The body to be sent.
      * @param userId Where the notification is going.
      */
-    public void push(NotificationBody body, NotificationSocket socket, WebRole role) {
-        service.push(NotificationAction.CREATE, body, socket, role);
-    }
-
-    /**
-     * Push a web notification to the given Web Role. It will perform a
-     * {@link NotificationAction#CREATE} with the passed in notification body.
-     * 
-     * @param body   The body to be sent.
-     * @param userId Where the notification is going.
-     */
-    public void push(NotificationAction action, NotificationBody body, NotificationSocket socket, WebRole role) {
-        service.push(action, body, socket, role);
+    public void push(Notification body, NotificationSocket socket, WebRole role) {
+        service.push(body, socket, role);
     }
 }

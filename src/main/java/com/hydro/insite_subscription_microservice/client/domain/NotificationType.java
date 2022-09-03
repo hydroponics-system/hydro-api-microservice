@@ -5,21 +5,19 @@ import com.hydro.common.dictionary.enums.TextEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
- * Notification Action types
- * 
+ * NotificationType contains all known {@link Notification} declerations.
+ *
  * @author Sam Butler
  * @since March 24, 2022
  */
-@Schema(description = "Notification Action Types")
-public enum NotificationAction implements TextEnum {
-    CREATE("C"),
-    READ("R"),
-    UPDATE("U"),
-    DELETE("D");
+@Schema(description = "Notification Types")
+public enum NotificationType implements TextEnum {
+    USER("USER"),
+    SYSTEM_FAILURE("SYSTEM_FAILURE");
 
     private String textId;
 
-    private NotificationAction(String textId) {
+    private NotificationType(String textId) {
         this.textId = textId;
     }
 
