@@ -1,6 +1,5 @@
 package com.hydro.insite_subscription_microservice.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Component;
 import com.hydro.common.dictionary.enums.WebRole;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationAction;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationBody;
-import com.hydro.insite_subscription_microservice.client.domain.NotificationEnvelope;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationSocket;
 import com.hydro.insite_subscription_microservice.client.domain.UserPrincipal;
 
@@ -66,7 +64,7 @@ public class SubscriptionService {
      * @param socket The socket path the notification should be sent too.
      */
     public void push(NotificationAction action, NotificationBody body, NotificationSocket socket) {
-        webNotifierService.send(buildEnvelope(action, body, socket));
+        webNotifierService.send(body, socket);
     }
 
     /**
@@ -92,7 +90,7 @@ public class SubscriptionService {
      */
     public void push(NotificationAction action, NotificationBody body, NotificationSocket socket, int userId) {
         getUserSessionByUserId(userId)
-                .ifPresentOrElse(u -> webNotifierService.send(buildEnvelope(action, body, socket), u.getName()),
+                .ifPresentOrElse(u -> webNotifierService.send(body, socket, u.getName()),
                                  () -> LOGGER.warn("No subscription found for user ID '{}'", userId));
     }
 
@@ -124,7 +122,7 @@ public class SubscriptionService {
         }
 
         for(UserPrincipal u : sessionList) {
-            webNotifierService.send(buildEnvelope(action, body, socket), u.getName());
+            webNotifierService.send(body, socket, u.getName());
         }
     }
 
@@ -156,26 +154,5 @@ public class SubscriptionService {
     private List<UserPrincipal> getUserSessionByWebRole(WebRole role) {
         return getActiveSessionUsers().stream().filter(u -> u.getUser().getWebRole().equals(role))
                 .collect(Collectors.toList());
-    }
-
-    /**
-     * Helper method to build out the notificaiton envelope that needs sent. It will
-     * take in the action to perform, the body to send, and the user id the
-     * notification is intended for.
-     * 
-     * @param action The action type of the notification.
-     * @param body   The content of the notification.
-     * @param socket The socket path the notification should be sent too.
-     * @param userId Where the notification is going.
-     * @return {@link NotificationEnvelope} object to send.
-     */
-    private NotificationEnvelope<NotificationBody> buildEnvelope(NotificationAction action, NotificationBody body,
-            NotificationSocket socket) {
-        NotificationEnvelope<NotificationBody> envelope = new NotificationEnvelope<>();
-        envelope.setAction(action);
-        envelope.setBody(body);
-        envelope.setDestination(socket.path());
-        envelope.setCreated(LocalDateTime.now());
-        return envelope;
     }
 }

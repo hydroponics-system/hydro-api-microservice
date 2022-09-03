@@ -1,9 +1,8 @@
 package com.hydro.insite_subscription_microservice.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
 import java.security.Principal;
 import java.util.Set;
@@ -22,7 +21,7 @@ import com.google.common.collect.Sets;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.jwt.utility.JwtHolder;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationAction;
-import com.hydro.insite_subscription_microservice.client.domain.NotificationEnvelope;
+import com.hydro.insite_subscription_microservice.client.domain.NotificationBody;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationSocket;
 import com.hydro.insite_subscription_microservice.client.domain.UserPrincipal;
 import com.hydro.insite_subscription_microservice.notification.UserNotification;
@@ -50,7 +49,10 @@ public class SubscriptionServiceTest {
     private SubscriptionService service;
 
     @Captor
-    private ArgumentCaptor<NotificationEnvelope<?>> sendNotificationCaptor;
+    private ArgumentCaptor<NotificationBody> sendNotificationCaptor;
+
+    @Captor
+    private ArgumentCaptor<NotificationSocket> notificationSocketCaptor;
 
     @BeforeEach
     public void setup() {
@@ -89,27 +91,30 @@ public class SubscriptionServiceTest {
 
         service.push(userSub, NotificationSocket.USER, 12);
 
-        verify(webNotifierService).send(sendNotificationCaptor.capture(), anyString());
+        verify(webNotifierService).send(sendNotificationCaptor.capture(), notificationSocketCaptor.capture(),
+                                        anyString());
 
-        NotificationEnvelope<?> envelope = sendNotificationCaptor.getValue();
-        assertEquals(envelope.getBody().getClass(), UserNotification.class, "Should be UserSubscription class");
+        NotificationBody body = sendNotificationCaptor.getValue();
+        assertEquals(body.getClass(), UserNotification.class, "Should be UserNotification class");
 
-        UserNotification resultSub = (UserNotification) envelope.getBody();
-        assertEquals(resultSub.getName(), "Test User", "User Name");
-        assertEquals(resultSub.getUserId(), 5, "User Id");
-        assertEquals(NotificationAction.CREATE, envelope.getAction(), "Notification Action");
-        assertEquals("/queue/user/notification", envelope.getDestination(), "Notification Destination");
+        UserNotification u = (UserNotification) body;
+
+        assertEquals(u.getName(), "Test User", "User Name");
+        assertEquals(u.getUserId(), 5, "User Id");
+        assertEquals("/queue/user/notification", notificationSocketCaptor.getValue().path(),
+                     "Notification Destination");
     }
 
     @Test
     public void testPushWithBodyAndNotificationAction() {
         service.push(NotificationAction.DELETE, new UserNotification(), NotificationSocket.USER, 12);
 
-        verify(webNotifierService).send(sendNotificationCaptor.capture(), anyString());
+        verify(webNotifierService).send(sendNotificationCaptor.capture(), notificationSocketCaptor.capture(),
+                                        anyString());
 
-        NotificationEnvelope<?> envelope = sendNotificationCaptor.getValue();
-        assertEquals(envelope.getBody().getClass(), UserNotification.class, "Should be UserSubscription class");
-        assertEquals(NotificationAction.DELETE, envelope.getAction(), "Notification Action");
-        assertEquals("/queue/user/notification", envelope.getDestination(), "Notification Destination");
+        NotificationBody body = sendNotificationCaptor.getValue();
+        assertEquals(body.getClass(), UserNotification.class, "Should be UserSubscription class");
+        assertEquals("/queue/user/notification", notificationSocketCaptor.getValue().path(),
+                     "Notification Destination");
     }
 }
