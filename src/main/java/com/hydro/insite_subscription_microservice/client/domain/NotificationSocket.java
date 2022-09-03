@@ -1,7 +1,5 @@
 package com.hydro.insite_subscription_microservice.client.domain;
 
-import com.hydro.common.dictionary.enums.TextEnum;
-
 import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
@@ -11,29 +9,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @since March 24, 2022
  */
 @Schema(description = "Notification Socket Paths")
-public enum NotificationSocket implements TextEnum {
-    USER("USER" , "/queue/user/notification"),
-    GENERAL("GENERAL" , "/topic/general/notification");
+public abstract class NotificationSocket {
+    public static final String QUEUE_USER_NOTIFICATION = "/queue/user/notification";
+    public static final String TOPIC_GENERAL_NOTIFICATION = "/topic/general/notification";
 
-    private String textId;
-    private String path;
-
-    private NotificationSocket(String textId, String path) {
-        this.textId = textId;
-        this.path = path;
-    }
-
-    @Override
-    public String getTextId() {
-        return textId;
-    }
-
-    /**
-     * Gets the socket URL path for the type.
-     * 
-     * @return String of the socket path url.
-     */
-    public String path() {
-        return path;
-    }
 }

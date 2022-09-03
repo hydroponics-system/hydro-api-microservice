@@ -51,7 +51,7 @@ public class SubscriptionServiceTest {
     private ArgumentCaptor<Notification> sendNotificationCaptor;
 
     @Captor
-    private ArgumentCaptor<NotificationSocket> notificationSocketCaptor;
+    private ArgumentCaptor<String> notificationSocketCaptor;
 
     @BeforeEach
     public void setup() {
@@ -88,7 +88,7 @@ public class SubscriptionServiceTest {
         userSub.setName("Test User");
         userSub.setUserId(5);
 
-        service.push(userSub, NotificationSocket.USER, 12);
+        service.push(userSub, NotificationSocket.QUEUE_USER_NOTIFICATION, 12);
 
         verify(webNotifierService).send(sendNotificationCaptor.capture(), notificationSocketCaptor.capture(),
                                         anyString());
@@ -100,20 +100,18 @@ public class SubscriptionServiceTest {
 
         assertEquals(u.getName(), "Test User", "User Name");
         assertEquals(u.getUserId(), 5, "User Id");
-        assertEquals("/queue/user/notification", notificationSocketCaptor.getValue().path(),
-                     "Notification Destination");
+        assertEquals("/queue/user/notification", notificationSocketCaptor.getValue(), "Notification Destination");
     }
 
     @Test
     public void testPushWithBodyAndNotificationAction() {
-        service.push(new UserNotification(), NotificationSocket.USER, 12);
+        service.push(new UserNotification(), NotificationSocket.QUEUE_USER_NOTIFICATION, 12);
 
         verify(webNotifierService).send(sendNotificationCaptor.capture(), notificationSocketCaptor.capture(),
                                         anyString());
 
         Notification body = sendNotificationCaptor.getValue();
         assertEquals(body.getClass(), UserNotification.class, "Should be UserSubscription class");
-        assertEquals("/queue/user/notification", notificationSocketCaptor.getValue().path(),
-                     "Notification Destination");
+        assertEquals("/queue/user/notification", notificationSocketCaptor.getValue(), "Notification Destination");
     }
 }

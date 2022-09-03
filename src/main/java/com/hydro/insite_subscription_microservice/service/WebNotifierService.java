@@ -7,7 +7,6 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import com.hydro.insite_subscription_microservice.client.domain.Notification;
-import com.hydro.insite_subscription_microservice.client.domain.NotificationSocket;
 
 /**
  * Web Notifier Service wraps the common elements of sending web notifications
@@ -30,9 +29,9 @@ public class WebNotifierService {
      * 
      * @param envelope {@link Notification} to be sent.
      */
-    public <T extends Notification> void send(T body, NotificationSocket destination) {
-        LOGGER.info("Sending Web Notification to '{}' with type '{}'", destination.path(), body.getType());
-        sendNotification(destination.path(), body);
+    public <T extends Notification> void send(T body, String destination) {
+        LOGGER.info("Sending Web Notification to '{}' with type '{}'", destination, body.getType());
+        sendNotification(destination, body);
     }
 
     /**
@@ -42,10 +41,10 @@ public class WebNotifierService {
      * @param envelope    {@link Notification} to be sent.
      * @param sessionUUID The unique session id for the user.
      */
-    public <T extends Notification> void send(T body, NotificationSocket destination, String sessionUUID) {
-        LOGGER.info("Sending Web Notification to '{}' with type '{}'",
-                    String.format("%s-%s", destination.path(), sessionUUID), body.getType());
-        sendNotification(String.format("%s-%s", destination.path(), sessionUUID), body);
+    public <T extends Notification> void send(T body, String destination, String sessionUUID) {
+        LOGGER.info("Sending Web Notification to '{}' with type '{}'", String.format("%s-%s", destination, sessionUUID),
+                    body.getType());
+        sendNotification(String.format("%s-%s", destination, sessionUUID), body);
     }
 
     /**

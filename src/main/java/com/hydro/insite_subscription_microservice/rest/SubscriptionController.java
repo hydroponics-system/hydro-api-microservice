@@ -56,7 +56,7 @@ public class SubscriptionController {
     @PostMapping(path = "/notification/{id}/id")
     @HasAccess(WebRole.DEVELOPER)
     public void pushNotificationToUser(@RequestBody Notification body, @PathVariable int id) {
-        service.push(body, NotificationSocket.USER, id);
+        service.push(body, NotificationSocket.QUEUE_USER_NOTIFICATION, id);
     }
 
     /**
@@ -70,7 +70,7 @@ public class SubscriptionController {
     @PostMapping(path = "/notification/{role}/role")
     @HasAccess(WebRole.DEVELOPER)
     public void pushNotificationToUser(@RequestBody Notification body, @PathVariable WebRole role) {
-        service.push(body, NotificationSocket.USER, role);
+        service.push(body, NotificationSocket.QUEUE_USER_NOTIFICATION, role);
     }
 
     /**

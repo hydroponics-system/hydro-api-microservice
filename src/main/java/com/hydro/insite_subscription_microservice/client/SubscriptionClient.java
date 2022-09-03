@@ -29,28 +29,27 @@ public class SubscriptionClient {
      * @param body The body to be sent.
      */
     public void push(Notification body) {
-        service.push(body, NotificationSocket.GENERAL);
+        service.push(body, NotificationSocket.TOPIC_GENERAL_NOTIFICATION);
     }
 
     /**
      * Push a web notification to the socket.
      * 
-     * @param action The action to perform.
      * @param body   The body to be sent.
-     * @param socket The socket path the notification should be sent too.
+     * @param socket Where th notification should go.
      */
-    public void push(Notification body, NotificationSocket socket) {
+    public void push(Notification body, String socket) {
         service.push(body, socket);
     }
 
     /**
      * Push a web notification.
      * 
-     * @param action The action to perform.
      * @param body   The body to be sent.
+     * @param socket Where th notification should go.
      * @param userId Where the notification is going.
      */
-    public void push(Notification body, NotificationSocket socket, int userId) {
+    public void push(Notification body, String socket, int userId) {
         service.push(body, socket, userId);
     }
 
@@ -58,9 +57,10 @@ public class SubscriptionClient {
      * Push a web notification to the given Web Role.
      * 
      * @param body   The body to be sent.
+     * @param socket Where th notification should go.
      * @param userId Where the notification is going.
      */
-    public void push(Notification body, NotificationSocket socket, WebRole role) {
+    public void push(Notification body, String socket, WebRole role) {
         service.push(body, socket, role);
     }
 }

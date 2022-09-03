@@ -39,7 +39,7 @@ public class SubscriptionService {
      * @param body The body to be sent.
      */
     public void push(Notification body) {
-        push(body, NotificationSocket.GENERAL);
+        push(body, NotificationSocket.TOPIC_GENERAL_NOTIFICATION);
     }
 
     /**
@@ -49,7 +49,7 @@ public class SubscriptionService {
      * @param body   The body to be sent.
      * @param socket The socket path the notification should be sent too.
      */
-    public void push(Notification body, NotificationSocket socket) {
+    public void push(Notification body, String socket) {
         webNotifierService.send(body, socket);
     }
 
@@ -61,7 +61,7 @@ public class SubscriptionService {
      * @param socket The socket path the notification should be sent too.
      * @param userId The user id of the user to send it too.
      */
-    public void push(Notification body, NotificationSocket socket, int userId) {
+    public void push(Notification body, String socket, int userId) {
         getUserSessionByUserId(userId)
                 .ifPresentOrElse(u -> webNotifierService.send(body, socket, u.getName()),
                                  () -> LOGGER.warn("No subscription found for user ID '{}'", userId));
@@ -76,7 +76,7 @@ public class SubscriptionService {
      * @param socket The socket path the notification should be sent too.
      * @param role   The role of the user to send it too.
      */
-    public void push(Notification body, NotificationSocket socket, WebRole role) {
+    public void push(Notification body, String socket, WebRole role) {
         List<UserPrincipal> sessionList = getUserSessionByWebRole(role);
         if(sessionList.isEmpty()) {
             LOGGER.warn("No subscription sessions found for web role '{}'", role.toString());
