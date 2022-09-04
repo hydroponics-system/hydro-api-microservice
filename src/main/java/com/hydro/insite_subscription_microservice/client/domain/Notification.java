@@ -1,21 +1,32 @@
 package com.hydro.insite_subscription_microservice.client.domain;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.time.LocalDateTime;
 
 /**
- * Added to entities to allow for notification type to be standardized when
- * publishing a message.
+ * Abstract class for extending when creating notifications
  * 
  * @author Sam Butler
  * @since March 24, 2022
  */
-@JsonDeserialize(as = NotificationImplementation.class)
-public interface Notification {
+public abstract class Notification implements NotificationBodyType {
 
-    /**
-     * A text value identifying the notification body type.
-     * 
-     * @return NotificationBodyType
-     */
-    NotificationType getType();
+    private String destination;
+
+    private LocalDateTime created;
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
 }

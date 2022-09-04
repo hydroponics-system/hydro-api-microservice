@@ -29,9 +29,9 @@ public class WebNotifierService {
      * 
      * @param envelope {@link Notification} to be sent.
      */
-    public <T extends Notification> void send(T body, String destination) {
-        LOGGER.info("Sending Web Notification to '{}' with type '{}'", destination, body.getType());
-        sendNotification(destination, body);
+    public <T extends Notification> void send(T body) {
+        LOGGER.info("Sending Web Notification to '{}' with type '{}'", body.getDestination(), body.getBodyType());
+        sendNotification(body.getDestination(), body);
     }
 
     /**
@@ -41,10 +41,10 @@ public class WebNotifierService {
      * @param envelope    {@link Notification} to be sent.
      * @param sessionUUID The unique session id for the user.
      */
-    public <T extends Notification> void send(T body, String destination, String sessionUUID) {
-        LOGGER.info("Sending Web Notification to '{}' with type '{}'", String.format("%s-%s", destination, sessionUUID),
-                    body.getType());
-        sendNotification(String.format("%s-%s", destination, sessionUUID), body);
+    public <T extends Notification> void send(T body, String sessionUUID) {
+        LOGGER.info("Sending Web Notification to '{}' with type '{}'",
+                    String.format("%s-%s", body.getDestination(), sessionUUID), body.getBodyType());
+        sendNotification(String.format("%s-%s", body.getDestination(), sessionUUID), body);
     }
 
     /**

@@ -14,7 +14,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @since July 28, 2022
  */
 @Schema(description = "System Failure Subscription for notifications")
-public class SystemFailureNotification implements Notification {
+public class SystemFailureNotification extends Notification {
     @Schema(description = "Message information about the system failure.")
     private String message;
 
@@ -38,7 +38,7 @@ public class SystemFailureNotification implements Notification {
     }
 
     @Override
-    public NotificationType getType() {
+    public NotificationType getBodyType() {
         return NotificationType.SYSTEM_FAILURE;
     }
 }

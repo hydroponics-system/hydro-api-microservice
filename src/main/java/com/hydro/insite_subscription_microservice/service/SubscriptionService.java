@@ -1,5 +1,6 @@
 package com.hydro.insite_subscription_microservice.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -50,7 +51,7 @@ public class SubscriptionService {
      * @param socket The socket path the notification should be sent too.
      */
     public void push(Notification body, String socket) {
-        webNotifierService.send(body, socket);
+        webNotifierService.send(buildNotification(body, socket));
     }
 
     /**
@@ -63,7 +64,7 @@ public class SubscriptionService {
      */
     public void push(Notification body, String socket, int userId) {
         getUserSessionByUserId(userId)
-                .ifPresentOrElse(u -> webNotifierService.send(body, socket, u.getName()),
+                .ifPresentOrElse(u -> webNotifierService.send(buildNotification(body, socket), u.getName()),
                                  () -> LOGGER.warn("No subscription found for user ID '{}'", userId));
     }
 
@@ -83,7 +84,7 @@ public class SubscriptionService {
         }
 
         for(UserPrincipal u : sessionList) {
-            webNotifierService.send(body, socket, u.getName());
+            webNotifierService.send(buildNotification(body, socket), u.getName());
         }
     }
 
@@ -115,5 +116,11 @@ public class SubscriptionService {
     private List<UserPrincipal> getUserSessionByWebRole(WebRole role) {
         return getActiveSessionUsers().stream().filter(u -> u.getUser().getWebRole().equals(role))
                 .collect(Collectors.toList());
+    }
+
+    private Notification buildNotification(Notification n, String destination) {
+        n.setCreated(LocalDateTime.now());
+        n.setDestination(destination);
+        return n;
     }
 }

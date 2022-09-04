@@ -12,7 +12,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @since March 24, 2022
  */
 @Schema(description = "User Subscription for notifications")
-public class UserNotification implements Notification {
+public class UserNotification extends Notification {
     @Schema(description = "The user id of the new user.")
     private int userId;
 
@@ -36,7 +36,7 @@ public class UserNotification implements Notification {
     }
 
     @Override
-    public NotificationType getType() {
+    public NotificationType getBodyType() {
         return NotificationType.USER;
     }
 }

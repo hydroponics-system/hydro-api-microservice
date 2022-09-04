@@ -1,7 +1,6 @@
 package com.hydro.insite_subscription_microservice.service;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 import java.security.Principal;
@@ -51,7 +50,7 @@ public class SubscriptionServiceTest {
     private ArgumentCaptor<Notification> sendNotificationCaptor;
 
     @Captor
-    private ArgumentCaptor<String> notificationSocketCaptor;
+    private ArgumentCaptor<String> sessionCaptor;
 
     @BeforeEach
     public void setup() {
@@ -79,7 +78,7 @@ public class SubscriptionServiceTest {
                 return null;
             }
         };
-        when(userRegistry.getUsers()).thenReturn(Sets.newHashSet(su));
+        lenient().when(userRegistry.getUsers()).thenReturn(Sets.newHashSet(su));
     }
 
     @Test
@@ -88,10 +87,9 @@ public class SubscriptionServiceTest {
         userSub.setName("Test User");
         userSub.setUserId(5);
 
-        service.push(userSub, NotificationSocket.QUEUE_USER_NOTIFICATION, 12);
+        service.push(userSub);
 
-        verify(webNotifierService).send(sendNotificationCaptor.capture(), notificationSocketCaptor.capture(),
-                                        anyString());
+        verify(webNotifierService).send(sendNotificationCaptor.capture());
 
         Notification body = sendNotificationCaptor.getValue();
         assertEquals(body.getClass(), UserNotification.class, "Should be UserNotification class");
@@ -100,18 +98,18 @@ public class SubscriptionServiceTest {
 
         assertEquals(u.getName(), "Test User", "User Name");
         assertEquals(u.getUserId(), 5, "User Id");
-        assertEquals("/queue/user/notification", notificationSocketCaptor.getValue(), "Notification Destination");
+        assertEquals("/topic/general/notification", u.getDestination(), "Notification Destination");
     }
 
     @Test
     public void testPushWithBodyAndNotificationAction() {
         service.push(new UserNotification(), NotificationSocket.QUEUE_USER_NOTIFICATION, 12);
 
-        verify(webNotifierService).send(sendNotificationCaptor.capture(), notificationSocketCaptor.capture(),
-                                        anyString());
+        verify(webNotifierService).send(sendNotificationCaptor.capture(), sessionCaptor.capture());
 
         Notification body = sendNotificationCaptor.getValue();
         assertEquals(body.getClass(), UserNotification.class, "Should be UserSubscription class");
-        assertEquals("/queue/user/notification", notificationSocketCaptor.getValue(), "Notification Destination");
+        assertEquals("/queue/user/notification", body.getDestination(), "Notification Destination");
+        assertEquals("fake-uuid", sessionCaptor.getValue(), "Session UUID");
     }
 }
