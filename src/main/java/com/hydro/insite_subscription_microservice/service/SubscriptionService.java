@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import com.hydro.common.dictionary.enums.WebRole;
 import com.hydro.insite_subscription_microservice.client.domain.Notification;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationSocket;
+import com.hydro.insite_subscription_microservice.client.domain.SystemPrincipal;
 import com.hydro.insite_subscription_microservice.client.domain.UserPrincipal;
 
 /**
@@ -95,6 +96,16 @@ public class SubscriptionService {
      */
     public List<UserPrincipal> getActiveSessionUsers() {
         return userRegistry.getUsers().stream().map(v -> (UserPrincipal) v.getPrincipal()).collect(Collectors.toList());
+    }
+
+    /**
+     * Will get the active systems connected to the websocket session.
+     * 
+     * @return List of system connections.
+     */
+    public List<SystemPrincipal> getActiveSessionSystems() {
+        return userRegistry.getUsers().stream().map(v -> (SystemPrincipal) v.getPrincipal())
+                .collect(Collectors.toList());
     }
 
     /**

@@ -1,6 +1,6 @@
 package com.hydro.insite_grow_chamber_history_microservice.rest;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.http.MediaType.*;
 
 import java.util.List;
 
@@ -76,7 +76,7 @@ public class GrowChamberHistoryController {
      */
     @Operation(summary = "Create a new entry in the grow chamber log", description = "Given a GrowChamberLog object, the entry will be inserted into the table.")
     @PostMapping(produces = APPLICATION_JSON_VALUE)
-    @HasAccess(WebRole.SYSTEM_USER)
+    @HasAccess(WebRole.SYSTEM)
     public GrowChamberLog insertGrowChamberLog(@RequestBody GrowChamberLog log) {
         return service.insertGrowChamberLog(log);
     }

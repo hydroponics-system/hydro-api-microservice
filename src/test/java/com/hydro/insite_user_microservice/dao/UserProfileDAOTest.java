@@ -1,8 +1,6 @@
 package com.hydro.insite_user_microservice.dao;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
@@ -106,11 +104,11 @@ public class UserProfileDAOTest {
         User userProfile = new User();
         assertEquals("Test", dao.getUserById(1).getFirstName());
         userProfile.setFirstName("Randy");
-        userProfile.setWebRole(WebRole.SYSTEM_USER);
+        userProfile.setWebRole(WebRole.SYSTEM);
 
         User returnedUser = dao.updateUserProfile(1, userProfile);
         assertEquals(userProfile.getFirstName(), returnedUser.getFirstName());
-        assertEquals(WebRole.SYSTEM_USER, returnedUser.getWebRole());
+        assertEquals(WebRole.SYSTEM, returnedUser.getWebRole());
     }
 
     @Test

@@ -1,13 +1,8 @@
 package com.hydro.insite_user_microservice.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -69,7 +64,7 @@ public class ManageUserProfileServiceTest {
     @Test
     public void testUpdateUserProfileByIdValid() throws Exception {
         User userToUpdate = UserFactoryData.userData();
-        userToUpdate.setWebRole(WebRole.SYSTEM_USER);
+        userToUpdate.setWebRole(WebRole.SYSTEM);
 
         when(dao.getUserById(anyInt())).thenReturn(userToUpdate);
         when(jwtHolder.getWebRole()).thenReturn(WebRole.ADMIN);
@@ -111,7 +106,7 @@ public class ManageUserProfileServiceTest {
     @Test
     public void testDeleteUserValid() throws Exception {
         User userToDelete = UserFactoryData.userData();
-        userToDelete.setWebRole(WebRole.SYSTEM_USER);
+        userToDelete.setWebRole(WebRole.SYSTEM);
 
         when(dao.getUserById(anyInt())).thenReturn(userToDelete);
         when(jwtHolder.getWebRole()).thenReturn(WebRole.ADMIN);

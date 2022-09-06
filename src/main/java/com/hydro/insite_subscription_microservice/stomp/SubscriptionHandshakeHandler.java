@@ -10,7 +10,9 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
 
+import com.hydro.common.jwt.domain.JwtType;
 import com.hydro.common.jwt.utility.JwtHolder;
+import com.hydro.insite_subscription_microservice.client.domain.SystemPrincipal;
 import com.hydro.insite_subscription_microservice.client.domain.UserPrincipal;
 
 /**
@@ -34,7 +36,14 @@ public class SubscriptionHandshakeHandler extends DefaultHandshakeHandler {
             Map<String, Object> attributes) {
         String randomId = UUID.randomUUID().toString();
 
-        LOGGER.info("Client connected to socket with ID '{}'", randomId);
-        return new UserPrincipal(randomId, jwtHolder.getUser());
+        if(jwtHolder.getJwtType().equals(JwtType.SYSTEM)) {
+            LOGGER.info("System Client connected to socket with ID '{}'", randomId);
+            return new SystemPrincipal(randomId, jwtHolder.getSystem());
+        }
+        else {
+            LOGGER.info("User Client connected to socket with ID '{}'", randomId);
+            return new UserPrincipal(randomId, jwtHolder.getUser());
+        }
+
     }
 }
