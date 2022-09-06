@@ -1,8 +1,7 @@
 package com.hydro.insite_subscription_microservice.stomp;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import java.net.URISyntaxException;
 
@@ -13,6 +12,7 @@ import org.springframework.http.server.ServerHttpRequest;
 
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.dictionary.enums.WebRole;
+import com.hydro.common.jwt.domain.JwtType;
 import com.hydro.common.jwt.utility.JwtHolder;
 import com.hydro.insite_subscription_microservice.client.domain.UserPrincipal;
 import com.hydro.test.factory.annotations.HydroServiceTest;
@@ -42,6 +42,7 @@ public class SubscriptionHandshakeHandlerTest {
         currentUser.setWebRole(WebRole.DEVELOPER);
 
         when(jwtHolder.getUser()).thenReturn(currentUser);
+        when(jwtHolder.getJwtType()).thenReturn(JwtType.WEB);
 
         UserPrincipal u = (UserPrincipal) handler.determineUser(request, null, null);
 
