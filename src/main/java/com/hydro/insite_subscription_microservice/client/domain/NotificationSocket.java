@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "Notification Socket Paths")
 public abstract class NotificationSocket {
     public static final String QUEUE_USER_NOTIFICATION = "/queue/user/notification";
-    public static final String TOPIC_GENERAL_NOTIFICATION = "/topic/general/notification";
+    public static final String QUEUE_SYSTEM_NOTIFICATION = "/queue/system/notification";
 
+    public static final String TOPIC_GENERAL_NOTIFICATION = "/topic/general/notification";
 }

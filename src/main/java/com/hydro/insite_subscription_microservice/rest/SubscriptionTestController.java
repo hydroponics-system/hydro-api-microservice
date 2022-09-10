@@ -42,7 +42,7 @@ public class SubscriptionTestController {
         UserNotification user = new UserNotification();
         user.setName("TEST USER");
         user.setUserId(15);
-        service.push(user);
+        service.push(user, NotificationSocket.QUEUE_USER_NOTIFICATION, 1);
     }
 
     /**

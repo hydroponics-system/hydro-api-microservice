@@ -41,9 +41,8 @@ public class SubscriptionConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.setUserDestinationPrefix("/user").enableSimpleBroker("/queue", "/topic")
-                .setTaskScheduler(taskScheduler())
-                .setHeartbeatValue(new long[] { DEFAULT_HEARTBEAT, DEFAULT_HEARTBEAT });
+        config.setUserDestinationPrefix("/user").enableSimpleBroker("/queue", "/topic", "/user")
+                .setTaskScheduler(taskScheduler()).setHeartbeatValue(new long[] {DEFAULT_HEARTBEAT, DEFAULT_HEARTBEAT});
     }
 
     @Override
