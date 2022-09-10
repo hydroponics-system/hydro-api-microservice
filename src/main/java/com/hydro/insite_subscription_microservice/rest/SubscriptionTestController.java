@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,21 +29,39 @@ public class SubscriptionTestController {
     private SubscriptionService service;
 
     /**
-     * Endpoint used for sending notifications to every subscription. It will take
-     * in the notification body and deserialize based on it's type. This will push
-     * to the default user queue when sending notifications. That is
-     * {@link NotificationSocket#USER}
-     * 
-     * @param body The body to push with the notification.
+     * Test endpoint for sending a notification body to the given user.
      */
-    @Operation(summary = "Sends a notification to all subscriptions. Test Endpoint", description = "Will send the notification body to the subscription microservice.")
     @PostMapping(path = "/notification")
     @HasAccess(WebRole.DEVELOPER)
-    public void pushNotification() {
+    public void pushGeneralNotification() {
         UserNotification user = new UserNotification();
         user.setName("TEST USER");
         user.setUserId(15);
-        service.push(user, NotificationSocket.QUEUE_USER_NOTIFICATION, 1);
+        service.push(user);
+    }
+
+    /**
+     * Test endpoint for sending a notification body to the given user.
+     */
+    @PostMapping(path = "/user/{userId}/notification")
+    @HasAccess(WebRole.DEVELOPER)
+    public void pushUserNotification(@PathVariable int userId) {
+        UserNotification user = new UserNotification();
+        user.setName("TEST USER");
+        user.setUserId(15);
+        service.push(user, NotificationSocket.QUEUE_USER_NOTIFICATION, userId);
+    }
+
+    /**
+     * Test endpoint for sending a notification body to the given system.
+     */
+    @PostMapping(path = "/system/{uuid}/notification")
+    @HasAccess(WebRole.DEVELOPER)
+    public void pushSystemNotification(@PathVariable String uuid) {
+        UserNotification user = new UserNotification();
+        user.setName("TEST USER");
+        user.setUserId(15);
+        service.push(user, NotificationSocket.QUEUE_SYSTEM_NOTIFICATION, uuid);
     }
 
     /**

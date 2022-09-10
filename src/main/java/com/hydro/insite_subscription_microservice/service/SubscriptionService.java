@@ -56,16 +56,15 @@ public class SubscriptionService {
     }
 
     /**
-     * Push a web notification to a user.
+     * Push a web notification to a user for the given user id.
      * 
-     * @param action The action to perform.
      * @param body   The body to be sent.
      * @param socket The socket path the notification should be sent too.
      * @param userId The user id of the user to send it too.
      */
     public void push(Notification body, String socket, int userId) {
         getUserSessionByUserId(userId)
-                .ifPresentOrElse(u -> webNotifierService.send(buildNotification(body, socket), u.getName()),
+                .ifPresentOrElse(u -> push(body, socket, u.getName()),
                                  () -> LOGGER.warn("No subscription found for user ID '{}'", userId));
     }
 
@@ -83,10 +82,24 @@ public class SubscriptionService {
         if(sessionList.isEmpty()) {
             LOGGER.warn("No subscription sessions found for web role '{}'", role.toString());
         }
-
-        for(UserPrincipal u : sessionList) {
-            webNotifierService.send(buildNotification(body, socket), u.getName());
+        else {
+            for(UserPrincipal u : sessionList) {
+                push(body, socket, u.getName());
+            }
         }
+    }
+
+    /**
+     * Push a web notification based on the given session id. Only the client with
+     * the specified session id will receive the notification.
+     * 
+     * @param body      The body to be sent.
+     * @param socket    The socket path the notification should be sent too.
+     * @param sessionId The session of id of the client to send the notification
+     *                  too.
+     */
+    public void push(Notification body, String socket, String sessionId) {
+        webNotifierService.send(buildNotification(body, socket), sessionId);
     }
 
     /**
@@ -129,6 +142,13 @@ public class SubscriptionService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Builds the {@link Notification} object.
+     * 
+     * @param n           The base notification
+     * @param destination Where the notification is to be sent.
+     * @return The new {@link Notification} body.
+     */
     private Notification buildNotification(Notification n, String destination) {
         n.setCreated(LocalDateTime.now());
         n.setDestination(destination);
