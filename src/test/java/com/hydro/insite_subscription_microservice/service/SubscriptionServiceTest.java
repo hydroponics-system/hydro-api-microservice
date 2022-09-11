@@ -20,7 +20,6 @@ import com.google.common.collect.Sets;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.jwt.utility.JwtHolder;
 import com.hydro.insite_subscription_microservice.client.domain.Notification;
-import com.hydro.insite_subscription_microservice.client.domain.NotificationSocket;
 import com.hydro.insite_subscription_microservice.client.domain.UserPrincipal;
 import com.hydro.insite_subscription_microservice.notification.UserNotification;
 import com.hydro.test.factory.annotations.HydroServiceTest;
@@ -44,7 +43,7 @@ public class SubscriptionServiceTest {
     private SimpUserRegistry userRegistry;
 
     @InjectMocks
-    private SubscriptionService service;
+    private SubscriptionNotifierService service;
 
     @Captor
     private ArgumentCaptor<Notification> sendNotificationCaptor;
@@ -87,7 +86,7 @@ public class SubscriptionServiceTest {
         userSub.setName("Test User");
         userSub.setUserId(5);
 
-        service.push(userSub);
+        service.send(userSub);
 
         verify(webNotifierService).send(sendNotificationCaptor.capture());
 
@@ -103,7 +102,7 @@ public class SubscriptionServiceTest {
 
     @Test
     public void testPushWithBodyAndNotificationAction() {
-        service.push(new UserNotification(), NotificationSocket.QUEUE_USER_NOTIFICATION, 12);
+        service.sendToUser(new UserNotification(), 12);
 
         verify(webNotifierService).send(sendNotificationCaptor.capture(), sessionCaptor.capture());
 

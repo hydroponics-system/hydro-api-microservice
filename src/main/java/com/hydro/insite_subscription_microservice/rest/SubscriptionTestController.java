@@ -16,7 +16,7 @@ import com.hydro.insite_subscription_microservice.client.domain.SystemPrincipal;
 import com.hydro.insite_subscription_microservice.client.domain.UserPrincipal;
 import com.hydro.insite_subscription_microservice.notification.UserNotification;
 import com.hydro.insite_subscription_microservice.openapi.TagSubscription;
-import com.hydro.insite_subscription_microservice.service.SubscriptionService;
+import com.hydro.insite_subscription_microservice.service.SubscriptionNotifierService;
 
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -26,43 +26,7 @@ import io.swagger.v3.oas.annotations.Operation;
 public class SubscriptionTestController {
 
     @Autowired
-    private SubscriptionService service;
-
-    /**
-     * Test endpoint for sending a notification body to the given user.
-     */
-    @PostMapping(path = "/notification")
-    @HasAccess(WebRole.DEVELOPER)
-    public void pushGeneralNotification() {
-        UserNotification user = new UserNotification();
-        user.setName("TEST USER");
-        user.setUserId(15);
-        service.push(user);
-    }
-
-    /**
-     * Test endpoint for sending a notification body to the given user.
-     */
-    @PostMapping(path = "/user/{userId}/notification")
-    @HasAccess(WebRole.DEVELOPER)
-    public void pushUserNotification(@PathVariable int userId) {
-        UserNotification user = new UserNotification();
-        user.setName("TEST USER");
-        user.setUserId(15);
-        service.push(user, NotificationSocket.QUEUE_USER_NOTIFICATION, userId);
-    }
-
-    /**
-     * Test endpoint for sending a notification body to the given system.
-     */
-    @PostMapping(path = "/system/{uuid}/notification")
-    @HasAccess(WebRole.DEVELOPER)
-    public void pushSystemNotification(@PathVariable String uuid) {
-        UserNotification user = new UserNotification();
-        user.setName("TEST USER");
-        user.setUserId(15);
-        service.push(user, NotificationSocket.QUEUE_SYSTEM_NOTIFICATION, uuid);
-    }
+    private SubscriptionNotifierService service;
 
     /**
      * Will get the active users connected to the websocket session.
@@ -73,7 +37,7 @@ public class SubscriptionTestController {
     @GetMapping(path = "/users")
     @HasAccess(WebRole.DEVELOPER)
     public List<UserPrincipal> getActiveSessionUsers() {
-        return service.getActiveSessionUsers();
+        return service.getActiveUserSessions();
     }
 
     /**
@@ -85,6 +49,42 @@ public class SubscriptionTestController {
     @GetMapping(path = "/systems")
     @HasAccess(WebRole.DEVELOPER)
     public List<SystemPrincipal> getActiveSessionSystems() {
-        return service.getActiveSessionSystems();
+        return service.getActiveSystemSessions();
+    }
+
+    /**
+     * Test endpoint for sending a notification body to everyone.
+     */
+    @PostMapping(path = "/notification")
+    @HasAccess(WebRole.DEVELOPER)
+    public void pushGeneralNotification() {
+        UserNotification user = new UserNotification();
+        user.setName("TEST USER");
+        user.setUserId(15);
+        service.send(user);
+    }
+
+    /**
+     * Test endpoint for sending a notification body to the given user.
+     */
+    @PostMapping(path = "/user/{userId}/notification")
+    @HasAccess(WebRole.DEVELOPER)
+    public void pushUserNotification(@PathVariable int userId) {
+        UserNotification user = new UserNotification();
+        user.setName("TEST USER");
+        user.setUserId(15);
+        service.sendToUser(user, userId);
+    }
+
+    /**
+     * Test endpoint for sending a notification body to the given system.
+     */
+    @PostMapping(path = "/system/{uuid}/notification")
+    @HasAccess(WebRole.DEVELOPER)
+    public void pushSystemNotification(@PathVariable String uuid) {
+        UserNotification user = new UserNotification();
+        user.setName("TEST USER");
+        user.setUserId(15);
+        service.send(user, NotificationSocket.QUEUE_SYSTEM_NOTIFICATION, uuid);
     }
 }
