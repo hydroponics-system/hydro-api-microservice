@@ -1,6 +1,6 @@
 package com.hydro.insite_hydro_system_microservice.rest;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.http.MediaType.*;
 
 import java.util.List;
 
@@ -19,6 +19,7 @@ import com.hydro.common.dictionary.data.HydroSystem;
 import com.hydro.insite_hydro_system_microservice.client.domain.request.HydroSystemGetRequest;
 import com.hydro.insite_hydro_system_microservice.openapi.TagHydroSystem;
 import com.hydro.insite_hydro_system_microservice.service.HydroSystemService;
+import com.hydro.insite_subscription_microservice.notification.SystemLinkNotification;
 
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -78,6 +79,18 @@ public class HydroSystemController {
     @PostMapping(value = "/register", produces = APPLICATION_JSON_VALUE)
     public HydroSystem registerSystem(@RequestBody HydroSystem sys) {
         return service.registerSystem(sys);
+    }
+
+    /**
+     * Request process to link a user to a system.
+     * 
+     * @param request The request to link a system.
+     * @return {@link SystemLinkNotification} the system link request with the code
+     */
+    @Operation(summary = "Request to link user to a system", description = "Will request to link a user to a system.")
+    @PostMapping(value = "/link", produces = APPLICATION_JSON_VALUE)
+    public SystemLinkNotification systemLinkRequest(@RequestBody SystemLinkNotification request) {
+        return service.systemLinkRequest(request);
     }
 
     /**

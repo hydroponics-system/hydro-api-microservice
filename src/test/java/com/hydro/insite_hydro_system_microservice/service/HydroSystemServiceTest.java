@@ -1,14 +1,9 @@
 package com.hydro.insite_hydro_system_microservice.service;
 
-import static com.hydro.test.factory.data.HydroSystemFactoryData.hydroSystem;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static com.hydro.test.factory.data.HydroSystemFactoryData.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -106,7 +101,6 @@ public class HydroSystemServiceTest {
         when(hydroSystemDAO.registerSystem(any(HydroSystem.class))).thenReturn(10);
         when(hydroSystemDAO.getNextSystemId()).thenReturn(10L);
         when(appEnvironmentService.getEnvironment()).thenReturn(Environment.DEVELOPMENT);
-        when(jwtHolder.getUserId()).thenReturn(12);
 
         HydroSystem s = service.registerSystem(new HydroSystem("testSystem", "fakePassword"));
 
@@ -116,7 +110,6 @@ public class HydroSystemServiceTest {
         assertEquals(Environment.DEVELOPMENT, s.getPartNumber().getEnvironment(), "Part Number Environment");
         assertEquals(10, s.getPartNumber().getSystemId(), "Part Number System Id");
         assertEquals(UUID.nameUUIDFromBytes(s.getPartNumber().toString().getBytes()).toString(), s.getUuid(), "UUID");
-        assertEquals(12, s.getOwnerUserId(), "Owner Id");
         assertNull(s.getPassword(), "Password should be cleared to null");
     }
 
@@ -141,7 +134,6 @@ public class HydroSystemServiceTest {
     @Test
     public void testUnregisterSystemRoleAdmin() {
         when(hydroSystemDAO.getSystems(any(HydroSystemGetRequest.class))).thenReturn(Arrays.asList(hydroSystem()));
-        when(jwtHolder.getUserId()).thenReturn(12);
         when(jwtHolder.getWebRole()).thenReturn(WebRole.ADMIN);
 
         service.unregisterSystem(8);
@@ -151,6 +143,7 @@ public class HydroSystemServiceTest {
     @Test
     public void testUnregisterSystemUserWhoCreatedSystem() {
         when(hydroSystemDAO.getSystems(any(HydroSystemGetRequest.class))).thenReturn(Arrays.asList(hydroSystem()));
+        when(jwtHolder.getWebRole()).thenReturn(WebRole.USER);
         when(jwtHolder.getUserId()).thenReturn(2);
 
         service.unregisterSystem(8);

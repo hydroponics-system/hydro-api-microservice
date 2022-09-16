@@ -13,7 +13,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "Notification Types")
 public enum NotificationType implements TextEnum {
     USER("USER"),
-    SYSTEM_FAILURE("SYSTEM_FAILURE");
+    SYSTEM_FAILURE("SYSTEM_FAILURE"),
+    SYSTEM_LINK("SYSTEM_LINK");
 
     private String textId;
 

@@ -10,12 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.google.common.collect.Sets;
 import com.hydro.common.dictionary.data.HydroSystem;
 import com.hydro.common.exception.InvalidSystemCredentials;
+import com.hydro.common.jwt.utility.JwtHolder;
 import com.hydro.common.jwt.utility.JwtTokenUtil;
 import com.hydro.insite_auth_microservice.client.domain.AuthToken;
 import com.hydro.insite_hydro_system_microservice.client.HydroSystemClient;
 import com.hydro.insite_hydro_system_microservice.client.domain.request.HydroSystemGetRequest;
 import com.hydro.insite_hydro_system_microservice.client.domain.request.SystemAuthenticationRequest;
 import com.hydro.insite_hydro_system_microservice.dao.HydroSystemAuthenticationDAO;
+import com.hydro.insite_user_microservice.client.UserProfileClient;
 
 @Transactional
 @Service
@@ -30,6 +32,12 @@ public class HydroSystemAuthenticationService {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @Autowired
+    private JwtHolder jwtHolder;
+
+    @Autowired
+    private UserProfileClient userProfileClient;
+
     /**
      * Generates a JWT token from a request
      *
@@ -43,6 +51,17 @@ public class HydroSystemAuthenticationService {
         String token = jwtTokenUtil.generateToken(system);
         return new AuthToken<HydroSystem>(token, LocalDateTime.now(), jwtTokenUtil.getExpirationDateFromToken(token),
                                           system);
+    }
+
+    /**
+     * Acknowledges a system verification check with the user.
+     * 
+     * @param userId The user id to link to the system.
+     * @throws Exception If the user does not exist for that id.
+     */
+    public void acknowledgeSystemVerification(int userId) throws Exception {
+        userProfileClient.getUserById(userId);
+        dao.assignUserToSystem(userId, jwtHolder.getSystem().getId());
     }
 
     /**

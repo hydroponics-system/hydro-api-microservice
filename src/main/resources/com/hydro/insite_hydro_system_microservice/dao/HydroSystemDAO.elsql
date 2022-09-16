@@ -23,8 +23,8 @@
     @INCLUDE(fromSystem)
 
 @NAME(registerSystem)
-    INSERT INTO systems (uuid, part_number, name, password, owner_user_id)
-    VALUES (:uuid, :part_number, :name, :password, :owner_user_id)
+    INSERT INTO systems (uuid, part_number, name, password)
+    VALUES (:uuid, :part_number, :name, :password)
 
 @NAME(unregisterSystem)
     DELETE FROM systems 

@@ -5,3 +5,8 @@
     systems sys
   WHERE
     sys.uuid = :uuid
+
+@NAME(updateSystemOwner)
+  UPDATE systems 
+  SET owner_user_id = :user_id 
+  WHERE id = :id;

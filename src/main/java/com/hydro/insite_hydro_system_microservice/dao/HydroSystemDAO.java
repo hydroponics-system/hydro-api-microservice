@@ -1,6 +1,6 @@
 package com.hydro.insite_hydro_system_microservice.dao;
 
-import static com.hydro.insite_hydro_system_microservice.mapper.HydroSystemMapper.HYDRO_SYSTEM_MAPPER;
+import static com.hydro.insite_hydro_system_microservice.mapper.HydroSystemMapper.*;
 
 import java.util.List;
 
@@ -54,7 +54,7 @@ public class HydroSystemDAO extends BaseDao {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         MapSqlParameterSource params = SqlParamBuilder.with().withParam(UUID, sys.getUuid())
                 .withParam(PART_NUMBER, sys.getPartNumber().toString()).withParam(NAME, sys.getName())
-                .withParam(PASSWORD, sys.getPassword()).withParam(OWNER_USER_ID, sys.getOwnerUserId()).build();
+                .withParam(PASSWORD, sys.getPassword()).build();
 
         post(getSql("registerSystem", params), params, keyHolder);
         return keyHolder.getKey().intValue();

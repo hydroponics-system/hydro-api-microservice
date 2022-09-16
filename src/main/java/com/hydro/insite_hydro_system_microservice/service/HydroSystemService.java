@@ -22,6 +22,8 @@ import com.hydro.common.jwt.utility.JwtHolder;
 import com.hydro.common.util.CommonUtil;
 import com.hydro.insite_hydro_system_microservice.client.domain.request.HydroSystemGetRequest;
 import com.hydro.insite_hydro_system_microservice.dao.HydroSystemDAO;
+import com.hydro.insite_subscription_microservice.client.SubscriptionNotifierClient;
+import com.hydro.insite_subscription_microservice.notification.SystemLinkNotification;
 
 import io.jsonwebtoken.lang.Assert;
 
@@ -44,6 +46,9 @@ public class HydroSystemService {
 
     @Autowired
     private JwtHolder jwtHolder;
+
+    @Autowired
+    private SubscriptionNotifierClient subscriptionNotifierClient;
 
     /**
      * Method for getting a list of systems based on the given request.
@@ -101,6 +106,20 @@ public class HydroSystemService {
     }
 
     /**
+     * Request process to link a user to a system.
+     * 
+     * @param request The request to link a system.
+     * @return {@link SystemLinkNotification} the system link request with the code
+     */
+    public SystemLinkNotification systemLinkRequest(SystemLinkNotification request) {
+        Assert.notNull(request.getUuid(), "System UUID can not be null");
+        request.setCode(String.format("%06d", CommonUtil.generateRandomNumber(6)));
+
+        subscriptionNotifierClient.sendToSystem(request, request.getUuid());
+        return request;
+    }
+
+    /**
      * Unregister a system by the given id. This will confirm that the system being
      * deleted is either by the user that created it or it is of a user with a role
      * of type ADMIN.
@@ -110,7 +129,7 @@ public class HydroSystemService {
     public void unregisterSystem(int id) {
         HydroSystem sys = getSystemById(id);
 
-        if(jwtHolder.getUserId() != sys.getOwnerUserId() && !jwtHolder.getWebRole().equals(WebRole.ADMIN)) {
+        if(!jwtHolder.getWebRole().equals(WebRole.ADMIN) && jwtHolder.getUserId() != sys.getOwnerUserId()) {
             throw new InsufficientPermissionsException("Insufficient permissions! You can not unregister this system.");
         }
 
@@ -135,7 +154,6 @@ public class HydroSystemService {
         sys.setPartNumber(partNumber);
         sys.setUuid(UUID.nameUUIDFromBytes(partNumber.toString().getBytes()).toString());
         sys.setPassword(BCrypt.hashpw(system.getPassword(), BCrypt.gensalt()));
-        sys.setOwnerUserId(jwtHolder.getUserId());
         return sys;
     }
 }

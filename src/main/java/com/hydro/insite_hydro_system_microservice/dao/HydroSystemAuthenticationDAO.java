@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hydro.common.exception.NotFoundException;
 import com.hydro.sql.abstracts.BaseDao;
+import com.hydro.sql.builder.SqlParamBuilder;
 
 /**
  * Class that handles all the dao calls to the database for hydro system
@@ -38,5 +39,15 @@ public class HydroSystemAuthenticationDAO extends BaseDao {
         catch(Exception e) {
             throw new NotFoundException("System UUID", uuid);
         }
+    }
+
+    /**
+     * Acknowledges a system verification check with the user.
+     * 
+     * @param userId The user id to link to the system.
+     */
+    public void assignUserToSystem(int userId, int systemId) {
+        var params = SqlParamBuilder.with().withParam(USER_ID, userId).withParam(ID, systemId).build();
+        post(getSql("updateSystemOwner"), params);
     }
 }
