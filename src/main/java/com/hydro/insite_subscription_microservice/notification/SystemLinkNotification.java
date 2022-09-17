@@ -22,6 +22,9 @@ public class SystemLinkNotification extends Notification {
     @Schema(description = "The unique code to authenticate with.")
     private String code;
 
+    @Schema(description = "The user id of the user requesting the link request.")
+    private int userId;
+
     public String getUuid() {
         return uuid;
     }
@@ -36,6 +39,14 @@ public class SystemLinkNotification extends Notification {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override

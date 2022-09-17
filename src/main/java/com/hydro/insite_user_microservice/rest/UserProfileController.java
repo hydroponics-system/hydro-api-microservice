@@ -1,6 +1,6 @@
 package com.hydro.insite_user_microservice.rest;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.http.MediaType.*;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class UserProfileController {
 	 */
 	@Operation(summary = "Get a list of users.", description = "Given a User Get Request, it will return a list of users that match the request.")
 	@GetMapping(produces = APPLICATION_JSON_VALUE)
-	@HasAccess(WebRole.ADMIN)
+	@HasAccess(WebRole.SYSTEM)
 	public List<User> getUsers(UserGetRequest request) throws Exception {
 		return userProfileService.getUsers(request);
 	}
@@ -71,7 +71,7 @@ public class UserProfileController {
 	 */
 	@Operation(summary = "Gets a user by id.", description = "For the given id value, it will return the corresponding user.")
 	@GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
-	@HasAccess(WebRole.ADMIN)
+	@HasAccess(WebRole.SYSTEM)
 	public User getUserById(@PathVariable int id) throws Exception {
 		return userProfileService.getUserById(id);
 	}

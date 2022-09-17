@@ -115,6 +115,7 @@ public class HydroSystemService {
     public SystemLinkNotification systemLinkRequest(SystemLinkNotification request) {
         Assert.notNull(request.getUuid(), "System UUID can not be null");
         request.setCode(String.format("%06d", CommonUtil.generateRandomNumber(6)));
+        request.setUserId(jwtHolder.getUserId());
 
         subscriptionNotifierClient.sendToSystem(request, NotificationSocket.QUEUE_SYSTEM_LINK_NOTIFICATION,
                                                 request.getUuid());
