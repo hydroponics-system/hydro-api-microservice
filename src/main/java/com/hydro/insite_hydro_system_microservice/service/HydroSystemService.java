@@ -23,6 +23,7 @@ import com.hydro.common.util.CommonUtil;
 import com.hydro.insite_hydro_system_microservice.client.domain.request.HydroSystemGetRequest;
 import com.hydro.insite_hydro_system_microservice.dao.HydroSystemDAO;
 import com.hydro.insite_subscription_microservice.client.SubscriptionNotifierClient;
+import com.hydro.insite_subscription_microservice.client.domain.NotificationSocket;
 import com.hydro.insite_subscription_microservice.notification.SystemLinkNotification;
 
 import io.jsonwebtoken.lang.Assert;
@@ -115,7 +116,8 @@ public class HydroSystemService {
         Assert.notNull(request.getUuid(), "System UUID can not be null");
         request.setCode(String.format("%06d", CommonUtil.generateRandomNumber(6)));
 
-        subscriptionNotifierClient.sendToSystem(request, request.getUuid());
+        subscriptionNotifierClient.sendToSystem(request, NotificationSocket.QUEUE_SYSTEM_LINK_NOTIFICATION,
+                                                request.getUuid());
         return request;
     }
 
