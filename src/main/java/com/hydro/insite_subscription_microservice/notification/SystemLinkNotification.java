@@ -1,7 +1,5 @@
 package com.hydro.insite_subscription_microservice.notification;
 
-import javax.annotation.Nonnull;
-
 import com.hydro.insite_subscription_microservice.client.domain.Notification;
 import com.hydro.insite_subscription_microservice.client.domain.NotificationType;
 
@@ -15,8 +13,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "System Link Notification")
 public class SystemLinkNotification extends Notification {
+
     @Schema(description = "The system uuid to link too.")
-    @Nonnull
     private String uuid;
 
     @Schema(description = "The unique code to authenticate with.")

@@ -2,8 +2,6 @@ package com.hydro.insite_hydro_system_microservice.client.domain.request;
 
 import java.io.Serializable;
 
-import javax.annotation.Nonnull;
-
 import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
@@ -16,11 +14,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class SystemAuthenticationRequest implements Serializable {
 
     @Schema(description = "The uuid to authenticate with.")
-    @Nonnull
     private String uuid;
 
     @Schema(description = "The password associated with the uid.")
-    @Nonnull
     private String password;
 
     public SystemAuthenticationRequest() {}

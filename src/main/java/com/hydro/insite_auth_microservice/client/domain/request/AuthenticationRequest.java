@@ -2,8 +2,6 @@ package com.hydro.insite_auth_microservice.client.domain.request;
 
 import java.io.Serializable;
 
-import javax.annotation.Nonnull;
-
 import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
@@ -16,11 +14,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class AuthenticationRequest implements Serializable {
 
     @Schema(description = "The email to authenticate with.")
-    @Nonnull
     private String email;
 
     @Schema(description = "The password associated with the email.")
-    @Nonnull
     private String password;
 
     public AuthenticationRequest() {}
